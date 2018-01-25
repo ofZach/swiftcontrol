@@ -21,6 +21,8 @@ class ofApp : public ofxiOSApp {
         void gotMemoryWarning();
         void deviceOrientationChanged(int newOrientation);
 
+    void setMode(int mode);
+
 };
 
 

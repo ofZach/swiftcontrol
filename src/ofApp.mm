@@ -17,6 +17,10 @@ void ofApp::draw(){
     ofDrawRectangle(200, 500 + sin(time) * 80, 50, 50);
 }
 
+void ofApp::setMode(int mode) {
+    ofLog() << "mode = " << mode << endl;
+}
+
 //--------------------------------------------------------------
 void ofApp::exit(){
 

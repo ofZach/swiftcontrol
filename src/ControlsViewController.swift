@@ -17,6 +17,17 @@ UICollectionViewDelegateFlowLayout {
     @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var brushCollectionView: UICollectionView!
 
+    let images = ["charlock",
+                  "cleaver",
+                  "maize",
+                  "shepards purse",
+                  "fat hen",
+                  "sugar beet",
+                  "maize",
+                  "shepards purse"]
+
+    var app: ofAppAdapter?
+
     override func viewDidLoad() {
         super.viewDidLoad();
 
@@ -47,9 +58,6 @@ UICollectionViewDelegateFlowLayout {
     // text
 
     // textset(string)
-    // modeset(int)
-    // images for the view
-    //
 
     @IBAction func didTapTestText() {
     }
@@ -64,23 +72,30 @@ UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return images.count * 2
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:kCellReuseIdentifier,
                                                             for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
+        let index = indexPath.item % images.count
+        cell.imageView.image = UIImage(named: images[index])
         return cell
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset
+        if offset.x > scrollView.contentSize.width / 2 {
+            scrollView.contentOffset = CGPoint(x: 0, y: offset.y)
+        }
     }
 
     // MARK: UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-
-
-
+        app?.setMode(Int32(indexPath.item))
     }
 
 }

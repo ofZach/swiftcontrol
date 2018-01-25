@@ -17,6 +17,8 @@
 		2E03ABED201A434A00CAABD4 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABEA201A434A00CAABD4 /* NSArray+PureLayout.m */; };
 		2E03ABEF201A46F700CAABD4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABEE201A46F700CAABD4 /* ImageCollectionViewCell.swift */; };
 		2E03ABF1201A470600CAABD4 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E03ABF0201A470600CAABD4 /* ImageCollectionViewCell.xib */; };
+		2E03ABF3201A4F3000CAABD4 /* Catalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E03ABF2201A4F3000CAABD4 /* Catalog.xcassets */; };
+		2E03ABF5201A518100CAABD4 /* ofAppAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABF4201A518100CAABD4 /* ofAppAdapter.mm */; };
 		5326AEA810A23A0500278DE6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5326AEA710A23A0500278DE6 /* CoreLocation.framework */; };
 		53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */; };
 		678E130817951530005B6D19 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 678E130717951530005B6D19 /* Icon@2x.png */; };
@@ -73,6 +75,9 @@
 		2E03ABEA201A434A00CAABD4 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
 		2E03ABEE201A46F700CAABD4 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E03ABF0201A470600CAABD4 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		2E03ABF2201A4F3000CAABD4 /* Catalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Catalog.xcassets; sourceTree = "<group>"; };
+		2E03ABF4201A518100CAABD4 /* ofAppAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ofAppAdapter.mm; sourceTree = "<group>"; };
+		2E03ABF6201A51AC00CAABD4 /* ofAppAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofAppAdapter.h; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* ofxiOS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxiOS_Prefix.pch; sourceTree = "<group>"; };
 		5326AEA710A23A0500278DE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -249,6 +254,9 @@
 				2E03ABDF201A3AFD00CAABD4 /* ControlsViewController.xib */,
 				2E03ABEE201A46F700CAABD4 /* ImageCollectionViewCell.swift */,
 				2E03ABF0201A470600CAABD4 /* ImageCollectionViewCell.xib */,
+				2E03ABF2201A4F3000CAABD4 /* Catalog.xcassets */,
+				2E03ABF6201A51AC00CAABD4 /* ofAppAdapter.h */,
+				2E03ABF4201A518100CAABD4 /* ofAppAdapter.mm */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -335,6 +343,7 @@
 				678E130C1795153C005B6D19 /* Default.png in Resources */,
 				678E130E17951540005B6D19 /* Default@2x.png in Resources */,
 				678E131017951549005B6D19 /* Default-568h@2x~iphone.png in Resources */,
+				2E03ABF3201A4F3000CAABD4 /* Catalog.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E03ABF5201A518100CAABD4 /* ofAppAdapter.mm in Sources */,
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
 				E4D8936F11527B74007E1F53 /* ofApp.mm in Sources */,
 				2E03ABDE201A385700CAABD4 /* ControlsViewController.swift in Sources */,
