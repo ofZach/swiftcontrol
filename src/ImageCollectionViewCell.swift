@@ -11,14 +11,8 @@ import UIKit
 class ImageCollectionViewCell : UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-//        backgroundColor = .red;
-    }
-
     override var isSelected: Bool {
         didSet {
-
             backgroundColor = isSelected ? .red : nil
         }
     }

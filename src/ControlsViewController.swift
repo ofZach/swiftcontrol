@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+// integrate into an AR app
+
 class ControlsViewController : UIViewController,
 UICollectionViewDelegate,
 UICollectionViewDataSource,
@@ -26,11 +28,11 @@ UITextViewDelegate {
     let images = ["charlock",
                   "cleaver",
                   "maize",
+                  "shepards purse",
+                  "fat hen",
+                  "sugar beet",
+                  "maize",
                   "shepards purse"]
-//                  "fat hen",
-//                  "sugar beet",
-//                  "maize",
-//                  "shepards purse"]
 
     var app: ofAppAdapter?
 
@@ -45,14 +47,13 @@ UITextViewDelegate {
     }
 
     func setUpTextView() {
-        textView.alpha = 0.0
+        hideTextView()
     }
 
     func setUpCollectionView() {
         brushCollectionView.register(UINib(nibName: kCellReuseIdentifier, bundle: nil),
                                      forCellWithReuseIdentifier: kCellReuseIdentifier)
         brushCollectionView.allowsMultipleSelection = false
-
     }
 
     @IBAction func didTapOpenDrawer() {
@@ -67,7 +68,7 @@ UITextViewDelegate {
     }
 
     func hideDrawer() {
-        collectionViewBottomConstraint.constant = -200
+        collectionViewBottomConstraint.constant = -brushCollectionView.frame.height
     }
 
     func showDrawer() {
@@ -81,12 +82,10 @@ UITextViewDelegate {
         textView.alpha = 1
     }
 
-
-
     @IBAction func didTapTestText() {
+        showTextView()
+        textView.becomeFirstResponder()
         UIView.animate(withDuration: 0.2)  {
-            self.textView.alpha  = 1.0;
-            self.textView.becomeFirstResponder()
             self.hideDrawer()
         }
     }
@@ -130,7 +129,8 @@ UITextViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        // explicit reload needed as we have the second item that is selected
+        // workaround - because we select items at selectedIndex and selectedIndex * 2, we need
+        // to clear it out.
         collectionView.reloadData()
     }
 
@@ -140,7 +140,6 @@ UITextViewDelegate {
                                                             for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         let index = indexPath.item % images.count
         cell.imageView.image = UIImage(named: images[index])
-
         if let selected = collectionView.indexPathsForSelectedItems?.first {
             if selected.item % images.count == index {
                 cell.isSelected = true
@@ -148,6 +147,16 @@ UITextViewDelegate {
         }
         return cell
     }
+
+    // MARK: UICollectionViewDelegate
+
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item % images.count
+        app?.setMode(Int32(index))
+    }
+
+    // MARK: UIScrollView
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset
@@ -160,14 +169,6 @@ UITextViewDelegate {
         }
     }
 
-    // MARK: UICollectionViewDelegate
-
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item % images.count
-        app?.setMode(Int32(index))
-    }
-
     // MARK: ControlView handling
     func shouldHandleTouch() -> Bool {
         if textView.isFirstResponder {
@@ -177,7 +178,6 @@ UITextViewDelegate {
         return false
     }
 }
-
 
 class ControlView: UIView {
     weak var controller: ControlsViewController?
