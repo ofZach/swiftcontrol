@@ -14,7 +14,7 @@ void ofApp::update(){
 void ofApp::draw(){
     float time = ofGetElapsedTimef() * 0.2;
 
-    ofDrawRectangle(200, 200 + sin(time) * 40, 50, 50);
+    ofDrawRectangle(200, 500 + sin(time) * 80, 50, 50);
 }
 
 //--------------------------------------------------------------
