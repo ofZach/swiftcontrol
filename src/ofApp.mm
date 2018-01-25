@@ -21,6 +21,10 @@ void ofApp::setMode(int mode) {
     ofLog() << "mode = " << mode << endl;
 }
 
+void ofApp::setText(NSString *text) {
+    ofLog() << "mode = " << [text UTF8String] << endl;
+}
+
 //--------------------------------------------------------------
 void ofApp::exit(){
 
@@ -28,7 +32,7 @@ void ofApp::exit(){
 
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
-
+    ofLog() << "touched" << endl;
 }
 
 //--------------------------------------------------------------

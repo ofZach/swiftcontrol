@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofxiOS.h"
+#include <Foundation/Foundation.h>
 
 class ofApp : public ofxiOSApp {
 	
@@ -22,6 +23,8 @@ class ofApp : public ofxiOSApp {
         void deviceOrientationChanged(int newOrientation);
 
     void setMode(int mode);
+    void setText(NSString *text);
+
 
 };
 

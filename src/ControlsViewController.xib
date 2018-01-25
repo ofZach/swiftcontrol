@@ -14,11 +14,12 @@
             <connections>
                 <outlet property="brushCollectionView" destination="qLz-X0-OvE" id="sq1-jf-cBs"/>
                 <outlet property="collectionViewBottomConstraint" destination="tiP-Z2-8hc" id="F8A-d0-Xy0"/>
+                <outlet property="textView" destination="PbR-GX-KhB" id="40q-IO-PAo"/>
                 <outlet property="view" destination="iN0-l3-epB" id="fVB-5C-BRk"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ControlView" customModule="zach_controls" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -38,7 +39,7 @@
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qLz-X0-OvE">
                     <rect key="frame" x="0.0" y="467" width="375" height="200"/>
-                    <color key="backgroundColor" white="1" alpha="0.28756421232876711" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.28756421232876711" colorSpace="custom" customColorSpace="sRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KTi-cY-6r3">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -50,19 +51,34 @@
                         <outlet property="delegate" destination="-1" id="GS5-O5-KiN"/>
                     </connections>
                 </collectionView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PbR-GX-KhB">
+                    <rect key="frame" x="68" y="205.5" width="240" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="khy-Bl-zJe"/>
+                    </constraints>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="dvA-JX-Ymj"/>
+                    </connections>
+                </textView>
             </subviews>
             <constraints>
+                <constraint firstItem="PbR-GX-KhB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="68" id="Df6-Er-yci"/>
                 <constraint firstItem="I0h-aw-OhG" firstAttribute="centerX" secondItem="Y8V-7Z-P4V" secondAttribute="centerX" id="KWk-sA-6m7"/>
                 <constraint firstItem="Y8V-7Z-P4V" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ZGX-3u-oe9"/>
                 <constraint firstItem="Y8V-7Z-P4V" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="62" id="bbM-Ns-5jV"/>
                 <constraint firstItem="I0h-aw-OhG" firstAttribute="top" secondItem="Y8V-7Z-P4V" secondAttribute="bottom" constant="8" id="iSg-Ou-hXl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qLz-X0-OvE" secondAttribute="trailing" id="n2j-Nt-FXV"/>
                 <constraint firstItem="qLz-X0-OvE" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" id="plg-fw-EXd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PbR-GX-KhB" secondAttribute="trailing" constant="67" id="ra7-Ha-iIP"/>
+                <constraint firstItem="PbR-GX-KhB" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.7" id="san-vW-L1V"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qLz-X0-OvE" secondAttribute="bottom" id="tiP-Z2-8hc"/>
                 <constraint firstItem="qLz-X0-OvE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ugG-UG-hnj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="32.5" y="61.5"/>
+            <point key="canvasLocation" x="78" y="-127"/>
         </view>
     </objects>
 </document>

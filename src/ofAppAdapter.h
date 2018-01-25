@@ -19,6 +19,7 @@
 
 - (id)initWithApp:(void *)app;
 - (void)setMode:(int)mode;
+- (void)setText:(NSString *)text;
 
 
 @end;
