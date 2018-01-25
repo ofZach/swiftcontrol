@@ -19,15 +19,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1em-oN-qu7">
-                        <rect key="frame" x="0.0" y="0.0" width="109" height="105"/>
+                        <rect key="frame" x="5" y="5" width="99" height="95"/>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="1em-oN-qu7" firstAttribute="leading" secondItem="NFh-Ul-dBJ" secondAttribute="leading" id="0PU-NR-YN0"/>
-                <constraint firstItem="NFh-Ul-dBJ" firstAttribute="bottom" secondItem="1em-oN-qu7" secondAttribute="bottom" id="29f-Mn-Orr"/>
-                <constraint firstItem="1em-oN-qu7" firstAttribute="top" secondItem="NFh-Ul-dBJ" secondAttribute="top" id="Zpm-30-wYv"/>
-                <constraint firstItem="NFh-Ul-dBJ" firstAttribute="trailing" secondItem="1em-oN-qu7" secondAttribute="trailing" id="d3H-Ph-oGm"/>
+                <constraint firstItem="1em-oN-qu7" firstAttribute="leading" secondItem="NFh-Ul-dBJ" secondAttribute="leading" constant="5" id="0PU-NR-YN0"/>
+                <constraint firstItem="NFh-Ul-dBJ" firstAttribute="bottom" secondItem="1em-oN-qu7" secondAttribute="bottom" constant="5" id="29f-Mn-Orr"/>
+                <constraint firstItem="1em-oN-qu7" firstAttribute="top" secondItem="NFh-Ul-dBJ" secondAttribute="top" constant="5" id="Zpm-30-wYv"/>
+                <constraint firstItem="NFh-Ul-dBJ" firstAttribute="trailing" secondItem="1em-oN-qu7" secondAttribute="trailing" constant="5" id="d3H-Ph-oGm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="NFh-Ul-dBJ"/>
             <size key="customSize" width="109" height="105"/>

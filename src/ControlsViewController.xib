@@ -31,15 +31,18 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0h-aw-OhG">
-                    <rect key="frame" x="159" y="120" width="59" height="30"/>
-                    <state key="normal" title="Test text"/>
+                    <rect key="frame" x="159.5" y="120" width="57" height="30"/>
+                    <state key="normal" title="test text"/>
                     <connections>
                         <action selector="didTapTestText" destination="-1" eventType="touchUpInside" id="2BO-Q3-OXi"/>
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qLz-X0-OvE">
                     <rect key="frame" x="0.0" y="467" width="375" height="200"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.28756421232876711" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.60343535958904104" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="3Sw-Cz-Rcy"/>
+                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KTi-cY-6r3">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -71,7 +74,7 @@
                 <constraint firstItem="Y8V-7Z-P4V" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="62" id="bbM-Ns-5jV"/>
                 <constraint firstItem="I0h-aw-OhG" firstAttribute="top" secondItem="Y8V-7Z-P4V" secondAttribute="bottom" constant="8" id="iSg-Ou-hXl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qLz-X0-OvE" secondAttribute="trailing" id="n2j-Nt-FXV"/>
-                <constraint firstItem="qLz-X0-OvE" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" id="plg-fw-EXd"/>
+                <constraint firstItem="qLz-X0-OvE" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" priority="999" id="plg-fw-EXd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PbR-GX-KhB" secondAttribute="trailing" constant="67" id="ra7-Ha-iIP"/>
                 <constraint firstItem="PbR-GX-KhB" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.7" id="san-vW-L1V"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qLz-X0-OvE" secondAttribute="bottom" id="tiP-Z2-8hc"/>

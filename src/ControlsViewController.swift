@@ -51,6 +51,7 @@ UITextViewDelegate {
     func setUpCollectionView() {
         brushCollectionView.register(UINib(nibName: kCellReuseIdentifier, bundle: nil),
                                      forCellWithReuseIdentifier: kCellReuseIdentifier)
+        brushCollectionView.allowsMultipleSelection = false
 
     }
 
@@ -128,12 +129,23 @@ UITextViewDelegate {
         return images.count * 2
     }
 
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        // explicit reload needed as we have the second item that is selected
+        collectionView.reloadData()
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:kCellReuseIdentifier,
                                                             for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         let index = indexPath.item % images.count
         cell.imageView.image = UIImage(named: images[index])
+
+        if let selected = collectionView.indexPathsForSelectedItems?.first {
+            if selected.item % images.count == index {
+                cell.isSelected = true
+            }
+        }
         return cell
     }
 
@@ -152,7 +164,8 @@ UITextViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        app?.setMode(Int32(indexPath.item))
+        let index = indexPath.item % images.count
+        app?.setMode(Int32(index))
     }
 
     // MARK: ControlView handling

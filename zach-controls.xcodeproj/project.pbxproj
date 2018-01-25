@@ -407,7 +407,8 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "src/zach-controls-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7s $(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -424,7 +425,8 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SWIFT_OBJC_BRIDGING_HEADER = "src/zach-controls-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7s $(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -457,7 +459,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
+				VALID_ARCHS = "armv7s $(ARCHS_STANDARD)";
 				WARNING_LDFLAGS = "-no_arch_warnings";
 			};
 			name = Debug;
@@ -489,7 +491,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
+				VALID_ARCHS = "armv7s $(ARCHS_STANDARD)";
 				WARNING_LDFLAGS = "-no_arch_warnings";
 			};
 			name = Release;

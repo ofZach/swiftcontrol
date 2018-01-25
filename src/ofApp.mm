@@ -22,7 +22,7 @@ void ofApp::setMode(int mode) {
 }
 
 void ofApp::setText(NSString *text) {
-    ofLog() << "mode = " << [text UTF8String] << endl;
+    ofLog() << "text = " << [text UTF8String] << endl;
 }
 
 //--------------------------------------------------------------

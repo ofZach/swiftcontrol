@@ -13,6 +13,13 @@ class ImageCollectionViewCell : UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .red;
+//        backgroundColor = .red;
+    }
+
+    override var isSelected: Bool {
+        didSet {
+
+            backgroundColor = isSelected ? .red : nil
+        }
     }
 }
