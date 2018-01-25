@@ -1,4 +1,6 @@
 #include "ofApp.h"
+#import "zach_controls-Swift.h"
+#import "PureLayout.h"
 
 int main() {
     
@@ -14,6 +16,17 @@ int main() {
     settings.glesVersion = OFXIOS_RENDERER_ES1; // type of renderer to use, ES1, ES2, ES3
     settings.windowMode = OF_FULLSCREEN;
     ofCreateWindow(settings);
-    
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        ofxiOSAppDelegate *del = [UIApplication sharedApplication].delegate;
+        UIViewController *parentVC = del.glViewController;
+
+        ControlsViewController * controller = [[ControlsViewController alloc] initWithNibName:nil
+                                                                                       bundle:nil];
+        [parentVC addChildViewController:controller];
+        [parentVC.view addSubview:controller.view];
+        [controller.view autoPinEdgesToSuperviewEdges];
+    });
+
 	return ofRunApp(new ofApp);
 }
