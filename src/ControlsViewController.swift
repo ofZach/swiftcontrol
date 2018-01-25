@@ -57,37 +57,44 @@ UITextViewDelegate {
     }
 
     @IBAction func didTapOpenDrawer() {
-        UIView.animate(withDuration: 0.2)  {
-            if (self.collectionViewBottomConstraint.constant < 0) {
-                self.showDrawer()
-            } else {
-                self.hideDrawer()
-            }
-            self.view.layoutIfNeeded()
+        if (self.collectionViewBottomConstraint.constant < 0) {
+            self.showDrawer()
+        } else {
+            self.hideDrawer()
         }
     }
 
     func hideDrawer() {
-        collectionViewBottomConstraint.constant = -brushCollectionView.frame.height
+        UIView.animate(withDuration: 0.2)  {
+            self.collectionViewBottomConstraint.constant = -self.brushCollectionView.frame.height
+            self.view.layoutIfNeeded()
+        }
     }
 
     func showDrawer() {
-        collectionViewBottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.2)  {
+            self.collectionViewBottomConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
 
     func hideTextView() {
-        textView.alpha = 0
+        UIView.animate(withDuration: 0.2)  {
+            self.textView.alpha = 0
+        }
+
     }
     func showTextView() {
-        textView.alpha = 1
+        UIView.animate(withDuration: 0.2)  {
+            self.textView.alpha = 1
+        }
+
     }
 
     @IBAction func didTapTestText() {
+        hideDrawer()
         showTextView()
         textView.becomeFirstResponder()
-        UIView.animate(withDuration: 0.2)  {
-            self.hideDrawer()
-        }
     }
 
     // MARK: UITextViewDelegate
@@ -154,6 +161,7 @@ UITextViewDelegate {
                         didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.item % images.count
         app?.setMode(Int32(index))
+        hideDrawer()
     }
 
     // MARK: UIScrollView
