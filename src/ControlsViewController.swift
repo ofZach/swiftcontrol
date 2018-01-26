@@ -36,7 +36,7 @@ AboutViewControllerDelegate {
                   "maize",
                   "shepards purse"]
 
-    var app: ofAppAdapter?
+    @objc var app: ofAppAdapter?
 
     private var currentString: String?
 
