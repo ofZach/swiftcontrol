@@ -2,16 +2,64 @@
 #import "ofxARKit.h"
 #import <ARKit/ARKit.h>
 
+void logSIMD(const simd::float4x4 &matrix)
+{
+    std::stringstream output;
+    int columnCount = sizeof(matrix.columns) / sizeof(matrix.columns[0]);
+    for (int column = 0; column < columnCount; column++) {
+        int rowCount = sizeof(matrix.columns[column]) / sizeof(matrix.columns[column][0]);
+        for (int row = 0; row < rowCount; row++) {
+            output << std::setfill(' ') << std::setw(9) << matrix.columns[column][row];
+            output << ' ';
+        }
+        output << std::endl;
+    }
+    output << std::endl;
+}
+
+ofMatrix4x4 matFromSimd(const simd::float4x4 &matrix){
+    ofMatrix4x4 mat;
+    mat.set(matrix.columns[0].x,matrix.columns[0].y,matrix.columns[0].z,matrix.columns[0].w,
+            matrix.columns[1].x,matrix.columns[1].y,matrix.columns[1].z,matrix.columns[1].w,
+            matrix.columns[2].x,matrix.columns[2].y,matrix.columns[2].z,matrix.columns[2].w,
+            matrix.columns[3].x,matrix.columns[3].y,matrix.columns[3].z,matrix.columns[3].w);
+    return mat;
+}
+
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     ARCore::SFormat format;
     format.enablePlaneTracking().enableLighting();
     session = [ARCore::generateNewSession(format) retain];
-
+    processor = ARProcessor::create(session);
+    processor->setup();
+    img.load("Default.png");
 }
-
+vector < matrix_float4x4 > mats;
 //--------------------------------------------------------------
-void ofApp::update(){
+void ofApp::update() {
+
+    processor->update();
+
+    mats.clear();
+
+    if (session.currentFrame){
+        NSInteger anchorInstanceCount = session.currentFrame.anchors.count;
+
+        for (NSInteger index = 0; index < anchorInstanceCount; index++) {
+            ARAnchor *anchor = session.currentFrame.anchors[index];
+
+            // Flip Z axis to convert geometry from right handed to left handed
+            matrix_float4x4 coordinateSpaceTransform = matrix_identity_float4x4;
+            coordinateSpaceTransform.columns[2].z = -1.0;
+
+            matrix_float4x4 newMat = matrix_multiply(anchor.transform, coordinateSpaceTransform);
+            mats.push_back(newMat);
+            logSIMD(newMat);
+            //anchorUniforms->modelMatrix = matrix_multiply(anchor.transform, coordinateSpaceTransform);
+        }
+    }
 
 }
 
@@ -20,6 +68,49 @@ void ofApp::draw(){
     float time = ofGetElapsedTimef() * 0.2;
 
     ofDrawRectangle(200, 500 + sin(time) * 80, 50, 50);
+
+
+
+
+    // MARK: AR Stuff
+    ofEnableAlphaBlending();
+
+    ofDisableDepthTest();
+    processor->draw();
+    ofEnableDepthTest();
+
+
+    if (session.currentFrame){
+        if (session.currentFrame.camera){
+
+            camera.begin();
+            processor->setARCameraMatrices();
+
+            for (int i = 0; i < mats.size(); i++){
+                ofPushMatrix();
+                //mats[i].operator=(const simd_float4x4 &)
+                ofMatrix4x4 mat;
+                mat.set(mats[i].columns[0].x, mats[i].columns[0].y,mats[i].columns[0].z,mats[i].columns[0].w,
+                        mats[i].columns[1].x, mats[i].columns[1].y,mats[i].columns[1].z,mats[i].columns[1].w,
+                        mats[i].columns[2].x, mats[i].columns[2].y,mats[i].columns[2].z,mats[i].columns[2].w,
+                        mats[i].columns[3].x, mats[i].columns[3].y,mats[i].columns[3].z,mats[i].columns[3].w);
+                ofMultMatrix(mat);
+
+                ofSetColor(255);
+                ofRotate(90,0,0,1);
+
+                float aspect = ARCommon::getNativeAspectRatio();
+                img.draw(-aspect/8,-0.125,aspect/4,0.25);
+
+
+                ofPopMatrix();
+            }
+
+            camera.end();
+        }
+
+    }
+    ofDisableDepthTest();
 }
 
 void ofApp::setMode(int mode) {

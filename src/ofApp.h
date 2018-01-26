@@ -1,5 +1,7 @@
 #pragma once
 #include "ofxiOS.h"
+#include <ARKit/ARKit.h>
+#include "ofxARKit.h"
 
 #include <Foundation/Foundation.h>
 
@@ -29,6 +31,11 @@ class ofApp : public ofxiOSApp {
 
 protected:
     ARSession *session;
+    ofVbo vbo;
+    ofTrueTypeFont font;
+    ARRef processor;
+    ofImage img;
+    ofCamera camera;
 
 
 };

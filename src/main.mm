@@ -28,7 +28,6 @@ int main() {
                                                                                        bundle:nil];
 
         controller.app = [[ofAppAdapter alloc] initWithApp:app];
-
         [parentVC addChildViewController:controller];
         [parentVC.view addSubview:controller.view];
         [controller.view autoPinEdgesToSuperviewEdges];
