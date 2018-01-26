@@ -24,6 +24,7 @@ UITextViewDelegate {
     @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var brushCollectionView: UICollectionView!
     @IBOutlet var textView: UITextView!
+    @IBOutlet var textBackgroundView: UIView!
 
     let images = ["charlock",
                   "cleaver",
@@ -35,6 +36,8 @@ UITextViewDelegate {
                   "shepards purse"]
 
     var app: ofAppAdapter?
+
+    var currentString: String?
 
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -65,36 +68,41 @@ UITextViewDelegate {
     }
 
     func hideDrawer() {
-        UIView.animate(withDuration: 0.2)  {
+        UIView.animate(withDuration: 0.3)  {
             self.collectionViewBottomConstraint.constant = -self.brushCollectionView.frame.height
             self.view.layoutIfNeeded()
         }
     }
 
     func showDrawer() {
-        UIView.animate(withDuration: 0.2)  {
+        UIView.animate(withDuration: 0.3)  {
             self.collectionViewBottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
     }
 
     func hideTextView() {
-        UIView.animate(withDuration: 0.2)  {
-            self.textView.alpha = 0
+        UIView.animate(withDuration: 0.3)  {
+            self.textBackgroundView.alpha = 0.0
         }
 
     }
     func showTextView() {
-        UIView.animate(withDuration: 0.2)  {
-            self.textView.alpha = 1
+        UIView.animate(withDuration: 0.3)  {
+            self.textBackgroundView.alpha = 1.0
         }
-
     }
 
     @IBAction func didTapTestText() {
+        textView.text = currentString
         hideDrawer()
         showTextView()
         textView.becomeFirstResponder()
+    }
+
+    @IBAction func didTapCloseText() {
+        textView.resignFirstResponder()
+        hideTextView()
     }
 
     // MARK: UITextViewDelegate
@@ -105,6 +113,7 @@ UITextViewDelegate {
         if text == "\n" {
             textView.resignFirstResponder()
             app?.setText(textView.text)
+            currentString = textView.text
             hideTextView()
             return false
         }

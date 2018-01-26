@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +15,7 @@
             <connections>
                 <outlet property="brushCollectionView" destination="qLz-X0-OvE" id="sq1-jf-cBs"/>
                 <outlet property="collectionViewBottomConstraint" destination="tiP-Z2-8hc" id="F8A-d0-Xy0"/>
+                <outlet property="textBackgroundView" destination="XHW-PJ-lz2" id="QxO-In-hY5"/>
                 <outlet property="textView" destination="PbR-GX-KhB" id="40q-IO-PAo"/>
                 <outlet property="view" destination="iN0-l3-epB" id="fVB-5C-BRk"/>
             </connections>
@@ -54,31 +56,54 @@
                         <outlet property="delegate" destination="-1" id="GS5-O5-KiN"/>
                     </connections>
                 </collectionView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PbR-GX-KhB">
-                    <rect key="frame" x="68" y="205.5" width="240" height="70"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHW-PJ-lz2">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ht-bD-gV5">
+                            <rect key="frame" x="10" y="5" width="59" height="35"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <state key="normal" title="Cancel"/>
+                            <connections>
+                                <action selector="didTapCloseText" destination="-1" eventType="touchUpInside" id="dtk-NT-Fh6"/>
+                            </connections>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PbR-GX-KhB">
+                            <rect key="frame" x="51" y="224" width="272" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="6KA-si-NTE"/>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="ZMe-T0-4Kc"/>
+                            </constraints>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="dvA-JX-Ymj"/>
+                            </connections>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.7228702910958904" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="70" id="khy-Bl-zJe"/>
+                        <constraint firstItem="0Ht-bD-gV5" firstAttribute="leading" secondItem="XHW-PJ-lz2" secondAttribute="leading" constant="10" id="Hiz-Xw-mCV"/>
+                        <constraint firstItem="PbR-GX-KhB" firstAttribute="leading" secondItem="XHW-PJ-lz2" secondAttribute="leading" priority="999" constant="51" id="PNb-Ga-3mz"/>
+                        <constraint firstAttribute="trailing" secondItem="PbR-GX-KhB" secondAttribute="trailing" priority="999" constant="52" id="cXG-Ki-Jm8"/>
+                        <constraint firstItem="PbR-GX-KhB" firstAttribute="centerY" secondItem="XHW-PJ-lz2" secondAttribute="centerY" multiplier="0.8" id="u2h-Nk-G2a"/>
                     </constraints>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="dvA-JX-Ymj"/>
-                    </connections>
-                </textView>
+                </view>
             </subviews>
             <constraints>
-                <constraint firstItem="PbR-GX-KhB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="68" id="Df6-Er-yci"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="0Ht-bD-gV5" secondAttribute="top" constant="-5" id="Hda-4Q-gE3"/>
                 <constraint firstItem="I0h-aw-OhG" firstAttribute="centerX" secondItem="Y8V-7Z-P4V" secondAttribute="centerX" id="KWk-sA-6m7"/>
                 <constraint firstItem="Y8V-7Z-P4V" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ZGX-3u-oe9"/>
+                <constraint firstItem="XHW-PJ-lz2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZIo-hm-cSr"/>
                 <constraint firstItem="Y8V-7Z-P4V" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="62" id="bbM-Ns-5jV"/>
+                <constraint firstItem="XHW-PJ-lz2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="dOA-Tw-3pZ"/>
                 <constraint firstItem="I0h-aw-OhG" firstAttribute="top" secondItem="Y8V-7Z-P4V" secondAttribute="bottom" constant="8" id="iSg-Ou-hXl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qLz-X0-OvE" secondAttribute="trailing" id="n2j-Nt-FXV"/>
                 <constraint firstItem="qLz-X0-OvE" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" priority="999" id="plg-fw-EXd"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PbR-GX-KhB" secondAttribute="trailing" constant="67" id="ra7-Ha-iIP"/>
-                <constraint firstItem="PbR-GX-KhB" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.7" id="san-vW-L1V"/>
+                <constraint firstAttribute="trailing" secondItem="XHW-PJ-lz2" secondAttribute="trailing" id="quS-Kd-ocu"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qLz-X0-OvE" secondAttribute="bottom" id="tiP-Z2-8hc"/>
                 <constraint firstItem="qLz-X0-OvE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ugG-UG-hnj"/>
+                <constraint firstAttribute="bottom" secondItem="XHW-PJ-lz2" secondAttribute="bottom" id="yzD-wL-VS0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="78" y="-127"/>
