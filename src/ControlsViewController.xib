@@ -25,6 +25,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lda-1j-nH1">
+                    <rect key="frame" x="153" y="42" width="70" height="30"/>
+                    <state key="normal" title="test about"/>
+                    <connections>
+                        <action selector="showAbout" destination="-1" eventType="touchUpInside" id="BvV-sA-26p"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8V-7Z-P4V">
                     <rect key="frame" x="128.5" y="82" width="119" height="30"/>
                     <state key="normal" title="Test open drawer"/>
@@ -93,6 +100,8 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="0Ht-bD-gV5" secondAttribute="top" constant="-5" id="Hda-4Q-gE3"/>
                 <constraint firstItem="I0h-aw-OhG" firstAttribute="centerX" secondItem="Y8V-7Z-P4V" secondAttribute="centerX" id="KWk-sA-6m7"/>
+                <constraint firstItem="Y8V-7Z-P4V" firstAttribute="top" secondItem="Lda-1j-nH1" secondAttribute="bottom" constant="10" id="KXn-Fj-zx3"/>
+                <constraint firstItem="Lda-1j-nH1" firstAttribute="centerX" secondItem="Y8V-7Z-P4V" secondAttribute="centerX" id="PX9-Qt-FhG"/>
                 <constraint firstItem="Y8V-7Z-P4V" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ZGX-3u-oe9"/>
                 <constraint firstItem="XHW-PJ-lz2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZIo-hm-cSr"/>
                 <constraint firstItem="Y8V-7Z-P4V" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="62" id="bbM-Ns-5jV"/>

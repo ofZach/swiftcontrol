@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #import "ofxARKit.h"
+#import "zach_controls-Swift.h"
 #import <ARKit/ARKit.h>
 
 void logSIMD(const simd::float4x4 &matrix)
@@ -63,13 +64,22 @@ void ofApp::update() {
 
 }
 
+// cell deselection
+// from of call back to swift
+// multi selection view
+
+
+
 //--------------------------------------------------------------
 void ofApp::draw(){
-    float time = ofGetElapsedTimef() * 0.2;
+    float time = ofGetElapsedTimef();
 
-    ofDrawRectangle(200, 500 + sin(time) * 80, 50, 50);
+//    ofDrawRectangle(200, 200 + sin(time) * 80, 50, 50);
 
-
+    ofPushStyle();
+    ofSetRectMode(OF_RECTMODE_CENTER);
+    ofDrawRectangle(200, 200, 50, 50);
+    ofPopStyle();
 
 
     // MARK: AR Stuff
@@ -128,7 +138,18 @@ void ofApp::exit(){
 
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
-    ofLog() << "touched" << endl;
+    ofLog() << "mouse " << mouseX << "," << mouseY << endl;
+
+    if ((ofPoint(mouseX, mouseY) - ofPoint(200, 200)).length() < 50) {
+        ofxiOSAppDelegate *del = [UIApplication sharedApplication].delegate;
+        UIViewController *parentVC = del.glViewController;
+        for (id controller in parentVC.childViewControllers) {
+            if ([controller isKindOfClass:[ControlsViewController class]]) {
+                ControlsViewController *controlsVC = controller;
+                [controlsVC showDrawer];
+            }
+        }
+    }
 }
 
 //--------------------------------------------------------------

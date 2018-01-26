@@ -10,21 +10,26 @@ import UIKit
 
 // integrate into an AR app
 
+
+
 class ControlsViewController : UIViewController,
 UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout,
-UITextViewDelegate {
+UITextViewDelegate,
+AboutViewControllerDelegate {
 
-    let kPaddingTopBottom: CGFloat = 50
-    let kInterItemSpacing: CGFloat = 50
+    private let kPaddingTopBottom: CGFloat = 50
+    private let kInterItemSpacing: CGFloat = 50
 
-    let kCellReuseIdentifier = String(describing: ImageCollectionViewCell.self);
+    private let kCellReuseIdentifier = String(describing: ImageCollectionViewCell.self);
 
     @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var brushCollectionView: UICollectionView!
     @IBOutlet var textView: UITextView!
     @IBOutlet var textBackgroundView: UIView!
+
+    private var aboutViewController: AboutViewController?
 
     let images = ["charlock",
                   "cleaver",
@@ -37,7 +42,11 @@ UITextViewDelegate {
 
     var app: ofAppAdapter?
 
-    var currentString: String?
+    private var currentString: String?
+
+    private var isDrawerOpen: Bool {
+        return collectionViewBottomConstraint.constant >= 0
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -49,25 +58,25 @@ UITextViewDelegate {
         }
     }
 
-    func setUpTextView() {
+    private func setUpTextView() {
         hideTextView()
     }
 
-    func setUpCollectionView() {
+    private func setUpCollectionView() {
         brushCollectionView.register(UINib(nibName: kCellReuseIdentifier, bundle: nil),
                                      forCellWithReuseIdentifier: kCellReuseIdentifier)
         brushCollectionView.allowsMultipleSelection = false
     }
 
     @IBAction func didTapOpenDrawer() {
-        if (self.collectionViewBottomConstraint.constant < 0) {
-            self.showDrawer()
+        if (isDrawerOpen) {
+            hideDrawer()
         } else {
-            self.hideDrawer()
+            showDrawer()
         }
     }
 
-    func hideDrawer() {
+    private func hideDrawer() {
         UIView.animate(withDuration: 0.3)  {
             self.collectionViewBottomConstraint.constant = -self.brushCollectionView.frame.height
             self.view.layoutIfNeeded()
@@ -81,13 +90,43 @@ UITextViewDelegate {
         }
     }
 
-    func hideTextView() {
+    private func hideAbout() {
+        guard let aboutViewController = aboutViewController else { return }
+        UIView.animate(withDuration: 0.3,
+                       delay: 0.0,
+                       animations: {
+                        aboutViewController.view.alpha = 0.0
+
+        }) { finished in
+            aboutViewController.removeFromParentViewController()
+            self.aboutViewController = nil
+        }
+    }
+
+    @IBAction func showAbout() {
+        guard self.aboutViewController == nil else { return }
+
+        let aboutViewController = AboutViewController(nibName: nil, bundle: nil)
+        aboutViewController.delegate = self
+        self.aboutViewController = aboutViewController
+        self.addChildViewController(aboutViewController)
+        aboutViewController.view.alpha = 0.0
+        view.addSubview(aboutViewController.view)
+        aboutViewController.view.autoPinEdgesToSuperviewEdges()
+
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        aboutViewController.view.alpha = 1.0
+        })
+    }
+
+    private func hideTextView() {
         UIView.animate(withDuration: 0.3)  {
             self.textBackgroundView.alpha = 0.0
         }
 
     }
-    func showTextView() {
+    private func showTextView() {
         UIView.animate(withDuration: 0.3)  {
             self.textBackgroundView.alpha = 1.0
         }
@@ -103,6 +142,12 @@ UITextViewDelegate {
     @IBAction func didTapCloseText() {
         textView.resignFirstResponder()
         hideTextView()
+    }
+
+    // MARK: AboutViewControllerDelegate
+
+    func aboutViewControllerDidTapClose(_ controller: AboutViewController) {
+        hideAbout()
     }
 
     // MARK: UITextViewDelegate
@@ -170,7 +215,12 @@ UITextViewDelegate {
                         didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.item % images.count
         app?.setMode(Int32(index))
-        hideDrawer()
+
+        // delay a closing a little bit so it's not so jarring
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.hideDrawer()
+        }
+
     }
 
     // MARK: UIScrollView
@@ -191,6 +241,9 @@ UITextViewDelegate {
         if textView.isFirstResponder {
             textView.resignFirstResponder()
             return true
+        } else if isDrawerOpen {
+            hideDrawer()
+            return true
         }
         return false
     }
@@ -202,8 +255,12 @@ class ControlView: UIView {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let view = super.hitTest(point, with: event)
 
-        if self == view && controller?.shouldHandleTouch() ?? false {
-            return nil
+        if self == view  {
+            if controller?.shouldHandleTouch() ?? false {
+                return view
+            } else {
+                return nil
+            }
         }
         return view
     }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="zach_controls" customModuleProvider="target">
+            <connections>
+                <outlet property="pageControl" destination="08n-pB-kf3" id="6jh-xS-Rs9"/>
+                <outlet property="scrollView" destination="stP-eJ-Sw9" id="fjG-l6-IiA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="369" height="427"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="stP-eJ-Sw9">
+                    <rect key="frame" x="40" y="40" width="289" height="347"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="VjQ-Cc-6Od"/>
+                    </connections>
+                </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="08n-pB-kf3">
+                    <rect key="frame" x="165" y="350" width="39" height="37"/>
+                </pageControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHr-Wj-FRg">
+                    <rect key="frame" x="309.5" y="25" width="39" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.31272482323991957" blue="0.32987835438310154" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Close"/>
+                    <connections>
+                        <action selector="didTapCloseButton" destination="-1" eventType="touchUpInside" id="fTK-DW-5tz"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="08n-pB-kf3" firstAttribute="bottom" secondItem="stP-eJ-Sw9" secondAttribute="bottom" id="4h3-fA-VNR"/>
+                <constraint firstItem="29m-rC-j2f" firstAttribute="bottom" secondItem="stP-eJ-Sw9" secondAttribute="bottom" constant="40" id="7XN-Dn-Bqi"/>
+                <constraint firstItem="aHr-Wj-FRg" firstAttribute="centerY" secondItem="stP-eJ-Sw9" secondAttribute="top" id="B8r-7W-6NW"/>
+                <constraint firstItem="29m-rC-j2f" firstAttribute="trailing" secondItem="stP-eJ-Sw9" secondAttribute="trailing" constant="40" id="F2Z-Rg-0bo"/>
+                <constraint firstItem="aHr-Wj-FRg" firstAttribute="centerX" secondItem="stP-eJ-Sw9" secondAttribute="trailing" id="OJ4-38-rxN"/>
+                <constraint firstItem="08n-pB-kf3" firstAttribute="centerX" secondItem="29m-rC-j2f" secondAttribute="centerX" id="Ob9-dB-5TB"/>
+                <constraint firstItem="stP-eJ-Sw9" firstAttribute="leading" secondItem="29m-rC-j2f" secondAttribute="leading" constant="40" id="hv9-wD-u3X"/>
+                <constraint firstItem="stP-eJ-Sw9" firstAttribute="top" secondItem="29m-rC-j2f" secondAttribute="top" constant="40" id="xJL-4v-QQU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="29m-rC-j2f"/>
+            <point key="canvasLocation" x="29.5" y="-59.5"/>
+        </view>
+    </objects>
+</document>
