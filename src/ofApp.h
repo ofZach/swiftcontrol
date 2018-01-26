@@ -3,6 +3,8 @@
 
 #include <Foundation/Foundation.h>
 
+@class ARSession;
+
 class ofApp : public ofxiOSApp {
 	
     public:
@@ -24,6 +26,9 @@ class ofApp : public ofxiOSApp {
 
     void setMode(int mode);
     void setText(NSString *text);
+
+protected:
+    ARSession *session;
 
 
 };

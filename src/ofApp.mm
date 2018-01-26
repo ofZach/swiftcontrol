@@ -1,7 +1,12 @@
 #include "ofApp.h"
+#import "ofxARKit.h"
+#import <ARKit/ARKit.h>
 
 //--------------------------------------------------------------
-void ofApp::setup(){	
+void ofApp::setup(){
+    ARCore::SFormat format;
+    format.enablePlaneTracking().enableLighting();
+    session = [ARCore::generateNewSession(format) retain];
 
 }
 
