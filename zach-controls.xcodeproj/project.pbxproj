@@ -9,16 +9,18 @@
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		26E48FA925CB7AB40D972560 /* ARProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16C7F36EEA16280EF694F1CA /* ARProcessor.mm */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		2E03ABDE201A385700CAABD4 /* ControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABDD201A385700CAABD4 /* ControlsViewController.swift */; };
 		2E03ABE0201A3AFD00CAABD4 /* ControlsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E03ABDF201A3AFD00CAABD4 /* ControlsViewController.xib */; };
-		2E03ABEB201A434A00CAABD4 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABE4201A434A00CAABD4 /* NSLayoutConstraint+PureLayout.m */; };
-		2E03ABEC201A434A00CAABD4 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABE7201A434A00CAABD4 /* ALView+PureLayout.m */; };
-		2E03ABED201A434A00CAABD4 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABEA201A434A00CAABD4 /* NSArray+PureLayout.m */; };
 		2E03ABEF201A46F700CAABD4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABEE201A46F700CAABD4 /* ImageCollectionViewCell.swift */; };
 		2E03ABF1201A470600CAABD4 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E03ABF0201A470600CAABD4 /* ImageCollectionViewCell.xib */; };
 		2E03ABF3201A4F3000CAABD4 /* Catalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E03ABF2201A4F3000CAABD4 /* Catalog.xcassets */; };
 		2E03ABF5201A518100CAABD4 /* ofAppAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E03ABF4201A518100CAABD4 /* ofAppAdapter.mm */; };
+		2E869ABD201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E869AB6201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m */; };
+		2E869ABE201B8D7700727FB3 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E869AB9201B8D7700727FB3 /* ALView+PureLayout.m */; };
+		2E869ABF201B8D7700727FB3 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E869ABC201B8D7700727FB3 /* NSArray+PureLayout.m */; };
+		2E869AC2201B8DA800727FB3 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E869AC1201B8DA800727FB3 /* ARKit.framework */; };
 		5326AEA810A23A0500278DE6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5326AEA710A23A0500278DE6 /* CoreLocation.framework */; };
 		53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */; };
 		678E130817951530005B6D19 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 678E130717951530005B6D19 /* Icon@2x.png */; };
@@ -27,6 +29,8 @@
 		678E130E17951540005B6D19 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 678E130D17951540005B6D19 /* Default@2x.png */; };
 		678E131017951549005B6D19 /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 678E130F17951549005B6D19 /* Default-568h@2x~iphone.png */; };
 		67DFA53619F92A69003B3434 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DFA53419F92A5E003B3434 /* Accelerate.framework */; };
+		8DEE3593CFC3E0A0F3578C2D /* ARCam.mm in Sources */ = {isa = PBXBuildFile; fileRef = DCA11A3992D2441F6D8D2DBD /* ARCam.mm */; };
+		966DC6CFF8359AF2BCC8EAFD /* ARAnchorManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBAC3A38884A86BA86D4C26D /* ARAnchorManager.mm */; };
 		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
@@ -57,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09673E6D454686E403C40A18 /* ARUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARUtils.h; path = ../../../addons/ofxARKit/src/ARUtils.h; sourceTree = SOURCE_ROOT; };
+		16C7F36EEA16280EF694F1CA /* ARProcessor.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = ARProcessor.mm; path = ../../../addons/ofxARKit/src/ARProcessor.mm; sourceTree = SOURCE_ROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* zach-controls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zach-controls.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -64,33 +70,41 @@
 		2E03ABDA201A383800CAABD4 /* zach-controls-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "zach-controls-Bridging-Header.h"; sourceTree = "<group>"; };
 		2E03ABDD201A385700CAABD4 /* ControlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsViewController.swift; sourceTree = "<group>"; };
 		2E03ABDF201A3AFD00CAABD4 /* ControlsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ControlsViewController.xib; sourceTree = "<group>"; };
-		2E03ABE2201A434A00CAABD4 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
-		2E03ABE3201A434A00CAABD4 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
-		2E03ABE4201A434A00CAABD4 /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
-		2E03ABE5201A434A00CAABD4 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
-		2E03ABE6201A434A00CAABD4 /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
-		2E03ABE7201A434A00CAABD4 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
-		2E03ABE8201A434A00CAABD4 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
-		2E03ABE9201A434A00CAABD4 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
-		2E03ABEA201A434A00CAABD4 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
 		2E03ABEE201A46F700CAABD4 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E03ABF0201A470600CAABD4 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		2E03ABF2201A4F3000CAABD4 /* Catalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Catalog.xcassets; sourceTree = "<group>"; };
 		2E03ABF4201A518100CAABD4 /* ofAppAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ofAppAdapter.mm; sourceTree = "<group>"; };
 		2E03ABF6201A51AC00CAABD4 /* ofAppAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofAppAdapter.h; sourceTree = "<group>"; };
+		2E869AB4201B8D7700727FB3 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
+		2E869AB5201B8D7700727FB3 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		2E869AB6201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		2E869AB7201B8D7700727FB3 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		2E869AB8201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		2E869AB9201B8D7700727FB3 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		2E869ABA201B8D7700727FB3 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		2E869ABB201B8D7700727FB3 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		2E869ABC201B8D7700727FB3 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		2E869AC1201B8DA800727FB3 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
+		302A7A61ECBFE243BE2A6D15 /* ARProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARProcessor.h; path = ../../../addons/ofxARKit/src/ARProcessor.h; sourceTree = SOURCE_ROOT; };
 		32CA4F630368D1EE00C91783 /* ofxiOS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxiOS_Prefix.pch; sourceTree = "<group>"; };
 		5326AEA710A23A0500278DE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		581E4B10C1444D6272A60B20 /* ARShaders.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARShaders.h; path = ../../../addons/ofxARKit/src/ARShaders.h; sourceTree = SOURCE_ROOT; };
+		6305FC4AB701AEC8BA64E935 /* ARDebugUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARDebugUtils.h; path = ../../../addons/ofxARKit/src/ARDebugUtils.h; sourceTree = SOURCE_ROOT; };
 		678E130717951530005B6D19 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "bin/data/Icon@2x.png"; sourceTree = "<group>"; };
 		678E130917951536005B6D19 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = bin/data/Icon.png; sourceTree = "<group>"; };
 		678E130B1795153C005B6D19 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = bin/data/Default.png; sourceTree = "<group>"; };
 		678E130D17951540005B6D19 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "bin/data/Default@2x.png"; sourceTree = "<group>"; };
 		678E130F17951549005B6D19 /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x~iphone.png"; path = "bin/data/Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		67DFA53419F92A5E003B3434 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		8CED944372A372672447BABA /* ARAnchorManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARAnchorManager.h; path = ../../../addons/ofxARKit/src/ARAnchorManager.h; sourceTree = SOURCE_ROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BB16EBD80F2B2AB500518274 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BB24DDC910DA781C00E9C588 /* ofxiOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ofxiOS-Info.plist"; sourceTree = "<group>"; };
+		BBAC3A38884A86BA86D4C26D /* ARAnchorManager.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = ARAnchorManager.mm; path = ../../../addons/ofxARKit/src/ARAnchorManager.mm; sourceTree = SOURCE_ROOT; };
 		BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CC7B4B2B9605C0BF2C8A133C /* ofxARKit.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxARKit.h; path = ../../../addons/ofxARKit/src/ofxARKit.h; sourceTree = SOURCE_ROOT; };
+		DCA11A3992D2441F6D8D2DBD /* ARCam.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = ARCam.mm; path = ../../../addons/ofxARKit/src/ARCam.mm; sourceTree = SOURCE_ROOT; };
 		E41D3ED613B38FB500A75A5D /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E41D3EE513B3906D00A75A5D /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/ios/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E41D400613B39D2100A75A5D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +116,9 @@
 		E4D8936B11527B74007E1F53 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = src/main.mm; sourceTree = SOURCE_ROOT; };
 		E4D8936C11527B74007E1F53 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
 		E4D8936D11527B74007E1F53 /* ofApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ofApp.mm; path = src/ofApp.mm; sourceTree = SOURCE_ROOT; };
+		E8470187C69FECA34ACE6825 /* ARObjects.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARObjects.h; path = ../../../addons/ofxARKit/src/ARObjects.h; sourceTree = SOURCE_ROOT; };
+		F1FD0B255231DD44AA4B35CA /* ARCam.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARCam.h; path = ../../../addons/ofxARKit/src/ARCam.h; sourceTree = SOURCE_ROOT; };
+		F9BE3DED6B2C36C40E5D4D69 /* ARSessionSetup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARSessionSetup.h; path = ../../../addons/ofxARKit/src/ARSessionSetup.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E869AC2201B8DA800727FB3 /* ARKit.framework in Frameworks */,
 				E41D421413B3A95300A75A5D /* libofxiOS_iphoneos_Debug.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -137,6 +155,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2152D16385B8F9DE337E943B /* ofxARKit */ = {
+			isa = PBXGroup;
+			children = (
+				65605B10F492D4585BA50B2D /* src */,
+			);
+			name = ofxARKit;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +176,7 @@
 				BB16F26B0F2B646B00518274 /* addons */,
 				BB16E9930F2B1E5900518274 /* libs */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				2E869AC0201B8DA800727FB3 /* Frameworks */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -175,20 +202,47 @@
 			name = "core frameworks";
 			sourceTree = "<group>";
 		};
-		2E03ABE1201A434A00CAABD4 /* PureLayout */ = {
+		2E869AB3201B8D7700727FB3 /* PureLayout */ = {
 			isa = PBXGroup;
 			children = (
-				2E03ABE2201A434A00CAABD4 /* PureLayoutDefines.h */,
-				2E03ABE3201A434A00CAABD4 /* ALView+PureLayout.h */,
-				2E03ABE4201A434A00CAABD4 /* NSLayoutConstraint+PureLayout.m */,
-				2E03ABE5201A434A00CAABD4 /* NSArray+PureLayout.h */,
-				2E03ABE6201A434A00CAABD4 /* NSLayoutConstraint+PureLayout.h */,
-				2E03ABE7201A434A00CAABD4 /* ALView+PureLayout.m */,
-				2E03ABE8201A434A00CAABD4 /* PureLayout+Internal.h */,
-				2E03ABE9201A434A00CAABD4 /* PureLayout.h */,
-				2E03ABEA201A434A00CAABD4 /* NSArray+PureLayout.m */,
+				2E869AB4201B8D7700727FB3 /* PureLayoutDefines.h */,
+				2E869AB5201B8D7700727FB3 /* ALView+PureLayout.h */,
+				2E869AB6201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m */,
+				2E869AB7201B8D7700727FB3 /* NSArray+PureLayout.h */,
+				2E869AB8201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.h */,
+				2E869AB9201B8D7700727FB3 /* ALView+PureLayout.m */,
+				2E869ABA201B8D7700727FB3 /* PureLayout+Internal.h */,
+				2E869ABB201B8D7700727FB3 /* PureLayout.h */,
+				2E869ABC201B8D7700727FB3 /* NSArray+PureLayout.m */,
 			);
 			path = PureLayout;
+			sourceTree = "<group>";
+		};
+		2E869AC0201B8DA800727FB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E869AC1201B8DA800727FB3 /* ARKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65605B10F492D4585BA50B2D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				302A7A61ECBFE243BE2A6D15 /* ARProcessor.h */,
+				BBAC3A38884A86BA86D4C26D /* ARAnchorManager.mm */,
+				F1FD0B255231DD44AA4B35CA /* ARCam.h */,
+				8CED944372A372672447BABA /* ARAnchorManager.h */,
+				E8470187C69FECA34ACE6825 /* ARObjects.h */,
+				16C7F36EEA16280EF694F1CA /* ARProcessor.mm */,
+				581E4B10C1444D6272A60B20 /* ARShaders.h */,
+				DCA11A3992D2441F6D8D2DBD /* ARCam.mm */,
+				F9BE3DED6B2C36C40E5D4D69 /* ARSessionSetup.h */,
+				6305FC4AB701AEC8BA64E935 /* ARDebugUtils.h */,
+				CC7B4B2B9605C0BF2C8A133C /* ofxARKit.h */,
+				09673E6D454686E403C40A18 /* ARUtils.h */,
+			);
+			name = src;
 			sourceTree = "<group>";
 		};
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
@@ -209,6 +263,7 @@
 		BB16F26B0F2B646B00518274 /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				2152D16385B8F9DE337E943B /* ofxARKit */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -245,7 +300,7 @@
 		E4D8936A11527B74007E1F53 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				2E03ABE1201A434A00CAABD4 /* PureLayout */,
+				2E869AB3201B8D7700727FB3 /* PureLayout */,
 				E4D8936B11527B74007E1F53 /* main.mm */,
 				E4D8936D11527B74007E1F53 /* ofApp.mm */,
 				E4D8936C11527B74007E1F53 /* ofApp.h */,
@@ -373,11 +428,14 @@
 				2E03ABF5201A518100CAABD4 /* ofAppAdapter.mm in Sources */,
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
 				E4D8936F11527B74007E1F53 /* ofApp.mm in Sources */,
+				2E869ABE201B8D7700727FB3 /* ALView+PureLayout.m in Sources */,
 				2E03ABDE201A385700CAABD4 /* ControlsViewController.swift in Sources */,
 				2E03ABEF201A46F700CAABD4 /* ImageCollectionViewCell.swift in Sources */,
-				2E03ABEC201A434A00CAABD4 /* ALView+PureLayout.m in Sources */,
-				2E03ABED201A434A00CAABD4 /* NSArray+PureLayout.m in Sources */,
-				2E03ABEB201A434A00CAABD4 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				2E869ABF201B8D7700727FB3 /* NSArray+PureLayout.m in Sources */,
+				2E869ABD201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				966DC6CFF8359AF2BCC8EAFD /* ARAnchorManager.mm in Sources */,
+				26E48FA925CB7AB40D972560 /* ARProcessor.mm in Sources */,
+				8DEE3593CFC3E0A0F3578C2D /* ARCam.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +511,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
 					src,
+					../../../addons/ofxARKit/src,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = NO;
@@ -486,6 +545,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
 					src,
+					../../../addons/ofxARKit/src,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = NO;
