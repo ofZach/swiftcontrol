@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-// integrate into an AR app
-
-
-
 class ControlsViewController : UIViewController,
 UICollectionViewDelegate,
 UICollectionViewDataSource,

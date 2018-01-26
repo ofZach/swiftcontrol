@@ -64,11 +64,6 @@ void ofApp::update() {
 
 }
 
-// cell deselection
-// from of call back to swift
-// multi selection view
-
-
 
 //--------------------------------------------------------------
 void ofApp::draw(){
