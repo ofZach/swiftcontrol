@@ -16,13 +16,16 @@
 
 @interface ofAppAdapter : NSObject;
 
-
-- (id)initWithApp:(void *)app;
 - (void)setMode:(int)mode;
 - (void)setText:(NSString *)text;
 
-
 @end;
 
-//#endif /* ofAppAdapter_h */
+#if __cplusplus
+class ofApp;
+@interface ofAppAdapter(cplusplus)
+- (id)initWithApp:(ofApp *)app;
+@end
+#endif
+
 

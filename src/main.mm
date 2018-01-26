@@ -26,7 +26,9 @@ int main() {
 
         ControlsViewController * controller = [[ControlsViewController alloc] initWithNibName:nil
                                                                                        bundle:nil];
+
         controller.app = [[ofAppAdapter alloc] initWithApp:app];
+
         [parentVC addChildViewController:controller];
         [parentVC.view addSubview:controller.view];
         [controller.view autoPinEdgesToSuperviewEdges];

@@ -10,18 +10,14 @@
 #import "ofAppAdapter.h"
 #import "ofApp.h"
 
-
 @interface ofAppAdapter()
-
 @property (assign, nonatomic) ofApp *app;
-
 @end
 
 @implementation ofAppAdapter;
 
-- (id)initWithApp:(void *)app {
+- (id)initWithApp:(ofApp *)app {
     self.app = (ofApp *)app;
-
     return self;
 }
 
@@ -31,14 +27,5 @@
 - (void)setText:(NSString *)text {
     self.app->setText(text);
 }
-
-
-//OfAppAdapter::OfAppAdapter(ofApp *app) {
-//    this->app = app;
-//}
-//
-//OfAppAdapter::setMode(int mode) {
-//    this->app->setMode(mode);
-//}
 
 @end;
