@@ -79,7 +79,7 @@ AboutViewControllerDelegate {
         }
     }
 
-    func showDrawer() {
+    @objc func showDrawer() {
         UIView.animate(withDuration: 0.3)  {
             self.collectionViewBottomConstraint.constant = 0
             self.view.layoutIfNeeded()

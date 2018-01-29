@@ -71,11 +71,6 @@ void ofApp::draw(){
 
 //    ofDrawRectangle(200, 200 + sin(time) * 80, 50, 50);
 
-    ofPushStyle();
-    ofSetRectMode(OF_RECTMODE_CENTER);
-    ofDrawRectangle(200, 200, 50, 50);
-    ofPopStyle();
-
 
     // MARK: AR Stuff
     ofEnableAlphaBlending();
@@ -116,6 +111,11 @@ void ofApp::draw(){
 
     }
     ofDisableDepthTest();
+
+    ofPushStyle();
+    ofSetRectMode(OF_RECTMODE_CENTER);
+    ofDrawRectangle(200, 200, 50, 50);
+    ofPopStyle();
 }
 
 void ofApp::setMode(int mode) {
@@ -144,6 +144,9 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
                 [controlsVC showDrawer];
             }
         }
+    } else {
+        processor->anchorController->addAnchor();
+
     }
 }
 
@@ -184,5 +187,6 @@ void ofApp::gotMemoryWarning(){
 
 //--------------------------------------------------------------
 void ofApp::deviceOrientationChanged(int newOrientation){
-
+    processor->updateDeviceInterfaceOrientation();
+    processor->deviceOrientationChanged();
 }
