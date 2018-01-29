@@ -175,7 +175,8 @@ AboutViewControllerDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, kInterItemSpacing, 0, kInterItemSpacing)
+        let padding = floor(kPaddingTopBottom/2)
+        return UIEdgeInsetsMake(padding, kInterItemSpacing, padding, kInterItemSpacing)
     }
 
     // MARK: UICollectionViewDataSource

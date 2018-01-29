@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,10 +24,10 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="1em-oN-qu7" firstAttribute="leading" secondItem="NFh-Ul-dBJ" secondAttribute="leading" constant="5" id="0PU-NR-YN0"/>
-                <constraint firstItem="NFh-Ul-dBJ" firstAttribute="bottom" secondItem="1em-oN-qu7" secondAttribute="bottom" constant="5" id="29f-Mn-Orr"/>
-                <constraint firstItem="1em-oN-qu7" firstAttribute="top" secondItem="NFh-Ul-dBJ" secondAttribute="top" constant="5" id="Zpm-30-wYv"/>
-                <constraint firstItem="NFh-Ul-dBJ" firstAttribute="trailing" secondItem="1em-oN-qu7" secondAttribute="trailing" constant="5" id="d3H-Ph-oGm"/>
+                <constraint firstItem="1em-oN-qu7" firstAttribute="leading" secondItem="vkC-jQ-3CS" secondAttribute="leading" constant="5" id="0PU-NR-YN0"/>
+                <constraint firstAttribute="bottom" secondItem="1em-oN-qu7" secondAttribute="bottom" constant="5" id="29f-Mn-Orr"/>
+                <constraint firstItem="1em-oN-qu7" firstAttribute="top" secondItem="vkC-jQ-3CS" secondAttribute="top" constant="5" id="Zpm-30-wYv"/>
+                <constraint firstAttribute="trailing" secondItem="1em-oN-qu7" secondAttribute="trailing" constant="5" id="d3H-Ph-oGm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="NFh-Ul-dBJ"/>
             <size key="customSize" width="109" height="105"/>

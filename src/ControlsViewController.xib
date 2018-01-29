@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -46,13 +46,13 @@
                         <action selector="didTapTestText" destination="-1" eventType="touchUpInside" id="2BO-Q3-OXi"/>
                     </connections>
                 </button>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qLz-X0-OvE">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qLz-X0-OvE">
                     <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.60343535958904104" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="3Sw-Cz-Rcy"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KTi-cY-6r3">
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="KTi-cY-6r3">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -110,7 +110,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qLz-X0-OvE" secondAttribute="trailing" id="n2j-Nt-FXV"/>
                 <constraint firstItem="qLz-X0-OvE" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" priority="999" id="plg-fw-EXd"/>
                 <constraint firstAttribute="trailing" secondItem="XHW-PJ-lz2" secondAttribute="trailing" id="quS-Kd-ocu"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qLz-X0-OvE" secondAttribute="bottom" id="tiP-Z2-8hc"/>
+                <constraint firstAttribute="bottom" secondItem="qLz-X0-OvE" secondAttribute="bottom" id="tiP-Z2-8hc"/>
                 <constraint firstItem="qLz-X0-OvE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ugG-UG-hnj"/>
                 <constraint firstAttribute="bottom" secondItem="XHW-PJ-lz2" secondAttribute="bottom" id="yzD-wL-VS0"/>
             </constraints>
