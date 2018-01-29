@@ -235,30 +235,38 @@ AboutViewControllerDelegate {
 
     // MARK: ControlView handling
     func shouldHandleTouch() -> Bool {
+        return textView.isFirstResponder || isDrawerOpen
+    }
+
+    func handleTouch() {
         if textView.isFirstResponder {
             textView.resignFirstResponder()
-            return true
         } else if isDrawerOpen {
             hideDrawer()
-            return true
         }
-        return false
     }
 }
 
 class ControlView: UIView {
     weak var controller: ControlsViewController?
 
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let view = super.hitTest(point, with: event)
+    var touch: UITouch?
 
-        if self == view  {
-            if controller?.shouldHandleTouch() ?? false {
-                return view
-            } else {
-                return nil
-            }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let controller = controller else { return }
+        controller.handleTouch()
+    }
+
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard let view = super.hitTest(point, with: event) else { return nil }
+        guard let controller = controller else { return nil }
+
+        if self == view && controller.shouldHandleTouch()  {
+            return view
+        } else if view.isDescendant(of: self) {
+            return view
+        } else {
+            return nil
         }
-        return view
     }
 }
