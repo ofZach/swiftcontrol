@@ -117,6 +117,7 @@ AboutViewControllerDelegate {
     }
 
     private func hideTextView() {
+        textView.resignFirstResponder()
         UIView.animate(withDuration: 0.3)  {
             self.textBackgroundView.alpha = 0.0
         }
@@ -136,7 +137,6 @@ AboutViewControllerDelegate {
     }
 
     @IBAction func didTapCloseText() {
-        textView.resignFirstResponder()
         hideTextView()
     }
 
@@ -240,7 +240,7 @@ AboutViewControllerDelegate {
 
     func handleTouch() {
         if textView.isFirstResponder {
-            textView.resignFirstResponder()
+            hideTextView()
         } else if isDrawerOpen {
             hideDrawer()
         }
