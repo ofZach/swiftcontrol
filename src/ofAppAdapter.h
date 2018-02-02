@@ -18,6 +18,7 @@
 
 - (void)setMode:(int)mode;
 - (void)setText:(NSString *)text;
+- (void)tick;
 
 @end;
 

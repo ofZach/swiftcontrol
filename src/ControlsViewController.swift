@@ -39,6 +39,7 @@ AboutViewControllerDelegate {
     @objc var app: ofAppAdapter?
 
     private var currentString: String?
+    private var displayLink: CADisplayLink?
 
     private var isDrawerOpen: Bool {
         return collectionViewBottomConstraint.constant >= 0
@@ -127,6 +128,21 @@ AboutViewControllerDelegate {
         UIView.animate(withDuration: 0.3)  {
             self.textBackgroundView.alpha = 1.0
         }
+    }
+
+    private func startDisplayLink() {
+        guard displayLink == nil else { return }
+        displayLink = CADisplayLink(target: self, selector: #selector(runDisplayLink))
+        displayLink?.add(to: .main, forMode: .UITrackingRunLoopMode)
+    }
+
+    private func stopDisplayLink() {
+        displayLink?.invalidate()
+        displayLink = nil
+    }
+
+    @objc private func runDisplayLink() {
+        app?.tick()
     }
 
     @IBAction func didTapTestText() {
@@ -221,6 +237,20 @@ AboutViewControllerDelegate {
     }
 
     // MARK: UIScrollView
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        startDisplayLink()
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        stopDisplayLink()
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            stopDisplayLink()
+        }
+    }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset

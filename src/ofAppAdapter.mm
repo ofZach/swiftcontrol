@@ -24,8 +24,13 @@
 - (void)setMode:(int)mode {
     self.app->setMode(mode);
 }
+
 - (void)setText:(NSString *)text {
     self.app->setText(text);
+}
+
+- (void)tick {
+    [[ofxiOSEAGLView getInstance] drawView]; 
 }
 
 @end;
