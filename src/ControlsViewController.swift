@@ -20,9 +20,11 @@ AboutViewControllerDelegate {
 
     private let kCellReuseIdentifier = String(describing: ImageCollectionViewCell.self);
 
-    @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var collectionViewYConstraint: NSLayoutConstraint!
     @IBOutlet var brushCollectionView: UICollectionView!
+    @IBOutlet var backgroundView: UIVisualEffectView!
     @IBOutlet var textView: UITextView!
+    @IBOutlet var textViewCancel: UIButton!
     @IBOutlet var textBackgroundView: UIView!
 
     private var aboutViewController: AboutViewController?
@@ -42,13 +44,14 @@ AboutViewControllerDelegate {
     private var displayLink: CADisplayLink?
 
     private var isDrawerOpen: Bool {
-        return collectionViewBottomConstraint.constant >= 0
+        return brushCollectionView.alpha > 0
     }
 
     override func viewDidLoad() {
-        super.viewDidLoad();
+        super.viewDidLoad()
         setUpTextView()
         setUpCollectionView()
+        hideDrawer(animated: false)
 
         if let controlView = view as? ControlView {
             controlView.controller = self
@@ -73,16 +76,25 @@ AboutViewControllerDelegate {
         }
     }
 
-    private func hideDrawer() {
-        UIView.animate(withDuration: 0.3)  {
-            self.collectionViewBottomConstraint.constant = -self.brushCollectionView.frame.height
-            self.view.layoutIfNeeded()
-        }
+    private func hideDrawer(animated: Bool = true) {
+        UIView.animate(withDuration: animated ? 0.3 : 0,
+                       animations: {
+                        self.backgroundView.alpha = 0
+                        self.collectionViewYConstraint.constant = 50
+                        self.view.layoutIfNeeded()
+        }, completion: { finished in
+            self.brushCollectionView.alpha = 0
+        })
     }
 
     @objc func showDrawer() {
+        // make sure other controls on the background view are hidden
+        textView.alpha = 0
+        textViewCancel.alpha = 0
         UIView.animate(withDuration: 0.3)  {
-            self.collectionViewBottomConstraint.constant = 0
+            self.backgroundView.alpha = 1.0
+            self.brushCollectionView.alpha = 1.0
+            self.collectionViewYConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
     }
