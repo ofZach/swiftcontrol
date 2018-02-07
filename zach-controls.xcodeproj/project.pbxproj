@@ -20,6 +20,7 @@
 		2E682416201BBDB9004FBE62 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E682414201BBDB9004FBE62 /* AboutViewController.swift */; };
 		2E682417201BBDB9004FBE62 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E682415201BBDB9004FBE62 /* AboutViewController.xib */; };
 		2E682419201BBF9B004FBE62 /* AboutViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E682418201BBF9B004FBE62 /* AboutViews.xib */; };
+		2E7E507C202BA33D008EDB6A /* CGPoint+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7E507B202BA33D008EDB6A /* CGPoint+Utilities.swift */; };
 		2E869ABD201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E869AB6201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m */; };
 		2E869ABE201B8D7700727FB3 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E869AB9201B8D7700727FB3 /* ALView+PureLayout.m */; };
 		2E869ABF201B8D7700727FB3 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E869ABC201B8D7700727FB3 /* NSArray+PureLayout.m */; };
@@ -81,6 +82,7 @@
 		2E682414201BBDB9004FBE62 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2E682415201BBDB9004FBE62 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		2E682418201BBF9B004FBE62 /* AboutViews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViews.xib; sourceTree = "<group>"; };
+		2E7E507B202BA33D008EDB6A /* CGPoint+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Utilities.swift"; sourceTree = "<group>"; };
 		2E869AB4201B8D7700727FB3 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		2E869AB5201B8D7700727FB3 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		2E869AB6201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				2E682414201BBDB9004FBE62 /* AboutViewController.swift */,
 				2E682418201BBF9B004FBE62 /* AboutViews.xib */,
 				2E682415201BBDB9004FBE62 /* AboutViewController.xib */,
+				2E7E507B202BA33D008EDB6A /* CGPoint+Utilities.swift */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -441,6 +444,7 @@
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
 				E4D8936F11527B74007E1F53 /* ofApp.mm in Sources */,
 				2E869ABE201B8D7700727FB3 /* ALView+PureLayout.m in Sources */,
+				2E7E507C202BA33D008EDB6A /* CGPoint+Utilities.swift in Sources */,
 				2E03ABDE201A385700CAABD4 /* ControlsViewController.swift in Sources */,
 				2E03ABEF201A46F700CAABD4 /* ImageCollectionViewCell.swift in Sources */,
 				2E682416201BBDB9004FBE62 /* AboutViewController.swift in Sources */,

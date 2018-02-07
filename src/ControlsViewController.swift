@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+private let kPaddingTopBottom: CGFloat = 50
+private let kInterItemSpacing: CGFloat = 50
+private let kLargeScrollViewMultiplier: CGFloat = 100 // no meaning, just meant to make scroll view large
+
 class ControlsViewController : UIViewController,
 UICollectionViewDelegate,
 UICollectionViewDataSource,
@@ -15,13 +19,11 @@ UICollectionViewDelegateFlowLayout,
 UITextViewDelegate,
 AboutViewControllerDelegate {
 
-    private let kPaddingTopBottom: CGFloat = 50
-    private let kInterItemSpacing: CGFloat = 50
-
     private let kCellReuseIdentifier = String(describing: ImageCollectionViewCell.self);
 
     @IBOutlet var collectionViewYConstraint: NSLayoutConstraint!
     @IBOutlet var brushCollectionView: UICollectionView!
+    @IBOutlet var proxyScrollView: UIScrollView!
     @IBOutlet var backgroundView: UIVisualEffectView!
     @IBOutlet var textView: UITextView!
     @IBOutlet var textViewCancel: UIButton!
@@ -40,8 +42,14 @@ AboutViewControllerDelegate {
 
     @objc var app: ofAppAdapter?
 
+    private var lastScrollOffset: CGPoint?
     private var currentString: String?
     private var displayLink: CADisplayLink?
+
+    private var itemSize: CGSize {
+        let edge = brushCollectionView.frame.height - kPaddingTopBottom
+        return CGSize(width: edge, height: edge)
+    }
 
     private var isDrawerOpen: Bool {
         return brushCollectionView.alpha > 0
@@ -56,6 +64,22 @@ AboutViewControllerDelegate {
         if let controlView = view as? ControlView {
             controlView.controller = self
         }
+    }
+
+    private func resetProxyScrollView() {
+        backgroundView.addGestureRecognizer(proxyScrollView.panGestureRecognizer)
+        proxyScrollView.contentSize = CGSize(width: view.frame.width * kLargeScrollViewMultiplier,
+                                             height: view.frame.height)
+        proxyScrollView.contentOffset = CGPoint(x: proxyScrollView.contentSize.width/2, y: 0)
+        lastScrollOffset = proxyScrollView.contentOffset
+
+        // select an index if one has not been selected yet. This always assumes we start with the
+        // first index. We select index 0 + n as opposed to 0 so that items will be visible on
+        // both left and right sies.
+        let selectedIndex = brushCollectionView.indexPathsForSelectedItems?.first ?? IndexPath(item: images.count, section: 0)
+        brushCollectionView.selectItem(at: selectedIndex,
+                                       animated: false,
+                                       scrollPosition: .centeredHorizontally)
     }
 
     private func setUpTextView() {
@@ -88,6 +112,7 @@ AboutViewControllerDelegate {
     }
 
     @objc func showDrawer() {
+        resetProxyScrollView()
         // make sure other controls on the background view are hidden
         textView.alpha = 0
         textViewCancel.alpha = 0
@@ -192,10 +217,7 @@ AboutViewControllerDelegate {
     // MARK: UICollectionViewDelegateFlowLayout
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = collectionView.frame.size
-        size.height -= kPaddingTopBottom
-        size.width = size.height
-        return size
+        return itemSize
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -238,11 +260,11 @@ AboutViewControllerDelegate {
 
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item % images.count
-        app?.setMode(Int32(index))
+        let safeIndex = indexPath.item % images.count
+        app?.setMode(Int32(safeIndex))
 
         // delay a closing a little bit so it's not so jarring
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.hideDrawer()
         }
 
@@ -265,26 +287,35 @@ AboutViewControllerDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset
-        let width = scrollView.contentSize.width / 2
-        let pos = offset.x.truncatingRemainder(dividingBy: width)
-        if offset.x > width {
-            scrollView.contentOffset = CGPoint(x: pos + kInterItemSpacing/2, y: offset.y)
-        } else if (offset.x < 0) {
-            scrollView.contentOffset = CGPoint(x: width + pos - kInterItemSpacing/2, y: offset.y)
+        if scrollView == proxyScrollView {
+            // paging logic
+            let lastScrollOffset = self.lastScrollOffset ?? scrollView.contentOffset
+            let offset = (scrollView.contentOffset - lastScrollOffset)/scrollView.frame.width
+            let itemSizeWithPadding = itemSize.width + kInterItemSpacing
+            let offsetForCollectionView = offset * itemSizeWithPadding
+            brushCollectionView.contentOffset += offsetForCollectionView
+            self.lastScrollOffset = scrollView.contentOffset
+        } else if scrollView == brushCollectionView {
+            // wrapping logic
+            let offset = scrollView.contentOffset
+            let width = scrollView.contentSize.width / 2
+            let pos = offset.x.truncatingRemainder(dividingBy: width)
+            if offset.x > width {
+                scrollView.contentOffset = CGPoint(x: pos + kInterItemSpacing/2, y: offset.y)
+            } else if (offset.x < 0) {
+                scrollView.contentOffset = CGPoint(x: width + pos - kInterItemSpacing/2, y: offset.y)
+            }
         }
     }
 
     // MARK: ControlView handling
     func shouldHandleTouch() -> Bool {
-        return textView.isFirstResponder || isDrawerOpen
+        return textView.isFirstResponder
     }
 
     func handleTouch() {
         if textView.isFirstResponder {
             hideTextView()
-        } else if isDrawerOpen {
-            hideDrawer()
         }
     }
 }

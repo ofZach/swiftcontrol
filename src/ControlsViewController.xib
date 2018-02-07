@@ -15,6 +15,7 @@
                 <outlet property="backgroundView" destination="p91-st-bU0" id="0uE-eZ-cLp"/>
                 <outlet property="brushCollectionView" destination="qLz-X0-OvE" id="sq1-jf-cBs"/>
                 <outlet property="collectionViewYConstraint" destination="EjA-k4-GgF" id="w0c-Ov-tdB"/>
+                <outlet property="proxyScrollView" destination="USd-3F-6x9" id="xUW-KI-gds"/>
                 <outlet property="textBackgroundView" destination="XHW-PJ-lz2" id="QxO-In-hY5"/>
                 <outlet property="textView" destination="PbR-GX-KhB" id="40q-IO-PAo"/>
                 <outlet property="textViewCancel" destination="0Ht-bD-gV5" id="yE2-r5-KM1"/>
@@ -86,11 +87,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qLz-X0-OvE">
-                                <rect key="frame" x="0.0" y="233" width="375" height="200"/>
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qLz-X0-OvE">
+                                <rect key="frame" x="0.0" y="199.5" width="375" height="267"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="3Sw-Cz-Rcy"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="3Sw-Cz-Rcy"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="KTi-cY-6r3">
                                     <size key="itemSize" width="50" height="50"/>
@@ -103,12 +104,22 @@
                                     <outlet property="delegate" destination="-1" id="GS5-O5-KiN"/>
                                 </connections>
                             </collectionView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USd-3F-6x9">
+                                <rect key="frame" x="0.0" y="667" width="375" height="667"/>
+                                <connections>
+                                    <outlet property="delegate" destination="-1" id="Zuf-XS-Eug"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="USd-3F-6x9" firstAttribute="leading" secondItem="Jpt-Jo-8Xy" secondAttribute="leading" id="5gf-ZC-u25"/>
+                            <constraint firstAttribute="trailing" secondItem="qLz-X0-OvE" secondAttribute="trailing" id="71I-Zr-JH3"/>
                             <constraint firstItem="qLz-X0-OvE" firstAttribute="centerY" secondItem="Jpt-Jo-8Xy" secondAttribute="centerY" id="EjA-k4-GgF"/>
-                            <constraint firstItem="qLz-X0-OvE" firstAttribute="height" secondItem="Jpt-Jo-8Xy" secondAttribute="height" multiplier="0.3" priority="999" id="UV9-cm-VLt"/>
-                            <constraint firstAttribute="trailing" secondItem="qLz-X0-OvE" secondAttribute="trailing" id="c5R-DR-633"/>
-                            <constraint firstItem="qLz-X0-OvE" firstAttribute="leading" secondItem="Jpt-Jo-8Xy" secondAttribute="leading" id="hhF-hP-iKo"/>
+                            <constraint firstItem="USd-3F-6x9" firstAttribute="height" secondItem="Jpt-Jo-8Xy" secondAttribute="height" id="QeQ-c3-FB1"/>
+                            <constraint firstItem="qLz-X0-OvE" firstAttribute="height" secondItem="Jpt-Jo-8Xy" secondAttribute="height" multiplier="0.4" priority="999" id="UV9-cm-VLt"/>
+                            <constraint firstAttribute="trailing" secondItem="USd-3F-6x9" secondAttribute="trailing" id="iS6-ST-giG"/>
+                            <constraint firstItem="qLz-X0-OvE" firstAttribute="leading" secondItem="Jpt-Jo-8Xy" secondAttribute="leading" id="sdy-sN-Cmd"/>
+                            <constraint firstItem="USd-3F-6x9" firstAttribute="top" secondItem="Jpt-Jo-8Xy" secondAttribute="bottom" id="vWT-uc-Cb7"/>
                         </constraints>
                     </view>
                     <blurEffect style="dark"/>
@@ -132,7 +143,7 @@
                 <constraint firstAttribute="bottom" secondItem="XHW-PJ-lz2" secondAttribute="bottom" id="yzD-wL-VS0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="78" y="-127"/>
+            <point key="canvasLocation" x="77.5" y="-127.5"/>
         </view>
     </objects>
 </document>
