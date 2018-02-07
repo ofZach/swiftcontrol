@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="backgroundView" destination="p91-st-bU0" id="0uE-eZ-cLp"/>
                 <outlet property="brushCollectionView" destination="qLz-X0-OvE" id="sq1-jf-cBs"/>
+                <outlet property="brushLabel" destination="foD-at-jxb" id="0c6-fN-QEL"/>
                 <outlet property="collectionViewYConstraint" destination="EjA-k4-GgF" id="w0c-Ov-tdB"/>
                 <outlet property="proxyScrollView" destination="USd-3F-6x9" id="xUW-KI-gds"/>
                 <outlet property="textBackgroundView" destination="XHW-PJ-lz2" id="QxO-In-hY5"/>
@@ -110,6 +111,12 @@
                                     <outlet property="delegate" destination="-1" id="Zuf-XS-Eug"/>
                                 </connections>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foD-at-jxb">
+                                <rect key="frame" x="0.0" y="483" width="375" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="USd-3F-6x9" firstAttribute="leading" secondItem="Jpt-Jo-8Xy" secondAttribute="leading" id="5gf-ZC-u25"/>
@@ -117,8 +124,11 @@
                             <constraint firstItem="qLz-X0-OvE" firstAttribute="centerY" secondItem="Jpt-Jo-8Xy" secondAttribute="centerY" id="EjA-k4-GgF"/>
                             <constraint firstItem="USd-3F-6x9" firstAttribute="height" secondItem="Jpt-Jo-8Xy" secondAttribute="height" id="QeQ-c3-FB1"/>
                             <constraint firstItem="qLz-X0-OvE" firstAttribute="height" secondItem="Jpt-Jo-8Xy" secondAttribute="height" multiplier="0.4" priority="999" id="UV9-cm-VLt"/>
+                            <constraint firstAttribute="trailing" secondItem="foD-at-jxb" secondAttribute="trailing" id="dAC-If-nYd"/>
                             <constraint firstAttribute="trailing" secondItem="USd-3F-6x9" secondAttribute="trailing" id="iS6-ST-giG"/>
+                            <constraint firstItem="foD-at-jxb" firstAttribute="leading" secondItem="Jpt-Jo-8Xy" secondAttribute="leading" id="n9d-pe-tgi"/>
                             <constraint firstItem="qLz-X0-OvE" firstAttribute="leading" secondItem="Jpt-Jo-8Xy" secondAttribute="leading" id="sdy-sN-Cmd"/>
+                            <constraint firstItem="foD-at-jxb" firstAttribute="top" secondItem="qLz-X0-OvE" secondAttribute="bottom" constant="16.5" id="u4s-52-VsP"/>
                             <constraint firstItem="USd-3F-6x9" firstAttribute="top" secondItem="Jpt-Jo-8Xy" secondAttribute="bottom" id="vWT-uc-Cb7"/>
                         </constraints>
                     </view>

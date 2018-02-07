@@ -28,28 +28,35 @@ AboutViewControllerDelegate {
     @IBOutlet var textView: UITextView!
     @IBOutlet var textViewCancel: UIButton!
     @IBOutlet var textBackgroundView: UIView!
+    @IBOutlet var brushLabel: UILabel!
 
     private var aboutViewController: AboutViewController?
 
-    let images = ["charlock",
-                  "cleaver",
-                  "maize",
-                  "shepards purse",
-                  "fat hen",
-                  "sugar beet",
-                  "maize",
-                  "shepards purse"]
+    let images = [Brush(name: "Charlock", imageName: "charlock"),
+                  Brush(name: "Cleaver", imageName: "cleaver"),
+                  Brush(name: "Maize", imageName: "maize"),
+                  Brush(name: "Shepards purse", imageName: "shepards purse"),
+                  Brush(name: "Fat Hen", imageName: "fat hen"),
+                  Brush(name: "Sugar Beet", imageName: "sugar beet"),
+                  Brush(name: "Maize", imageName: "maize")]
 
     @objc var app: ofAppAdapter?
 
     private var lastScrollOffset: CGPoint?
     private var currentString: String?
     private var displayLink: CADisplayLink?
+
     private var selectedIndexPath = IndexPath(item: 0, section: 0) {
         didSet {
             let safeIndex = selectedIndexPath.item % images.count
             app?.setMode(Int32(safeIndex))
         }
+    }
+
+    private var indexPathInTheMiddle: IndexPath {
+        let centerOffset = brushCollectionView.contentOffset.x + brushCollectionView.frame.width/2
+        let index = Int(centerOffset/itemWidthWithPadding)
+        return IndexPath(item: index, section: 0)
     }
 
     private var itemSize: CGSize {
@@ -255,7 +262,7 @@ AboutViewControllerDelegate {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:kCellReuseIdentifier,
                                                             for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         let index = indexPath.item % images.count
-        cell.imageView.image = UIImage(named: images[index])
+        cell.imageView.image = UIImage(named: images[index].imageName)
         if selectedIndexPath.item % images.count == index || selectedIndexPath.item == index {
             cell.isSelected = true
         } else {
@@ -291,6 +298,9 @@ AboutViewControllerDelegate {
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         startDisplayLink()
+        UIView.animate(withDuration: 0.2) {
+            self.brushLabel.alpha = 0.0
+        }
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -298,12 +308,14 @@ AboutViewControllerDelegate {
 
         // select the item in the middle of the screen
         selectItemInTheMiddleOfScreen()
+
+        UIView.animate(withDuration: 0.2) {
+            self.brushLabel.alpha = 1.0
+        }
     }
 
     private func selectItemInTheMiddleOfScreen() {
-        let centerOffset = brushCollectionView.contentOffset.x + brushCollectionView.frame.width/2
-        let index = Int(centerOffset/itemWidthWithPadding)
-        selectedIndexPath = IndexPath(item: index, section: 0)
+        selectedIndexPath = indexPathInTheMiddle
         brushCollectionView.reloadData() // to clear adjacent selected states
     }
 
@@ -316,22 +328,36 @@ AboutViewControllerDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == proxyScrollView {
             // paging logic
-            let lastScrollOffset = self.lastScrollOffset ?? scrollView.contentOffset
-            let offset = (scrollView.contentOffset - lastScrollOffset)/scrollView.frame.width
-            let offsetForCollectionView = offset * itemWidthWithPadding
-            brushCollectionView.contentOffset += offsetForCollectionView
-            self.lastScrollOffset = scrollView.contentOffset
+            updateScrollViewOffset()
         } else if scrollView == brushCollectionView {
             // wrapping logic
-            let offset = scrollView.contentOffset
-            let width = scrollView.contentSize.width / 2
-            let pos = offset.x.truncatingRemainder(dividingBy: width)
-            if offset.x > width {
-                scrollView.contentOffset = CGPoint(x: pos + kInterItemSpacing/2, y: offset.y)
-            } else if (offset.x < 0) {
-                scrollView.contentOffset = CGPoint(x: width + pos - kInterItemSpacing/2, y: offset.y)
-            }
+            resetCollectionViewOffsetIfNecessary()
+            updateBrushLabelText()
         }
+    }
+
+    func updateScrollViewOffset() {
+        let lastScrollOffset = self.lastScrollOffset ?? proxyScrollView.contentOffset
+        let offset = (proxyScrollView.contentOffset - lastScrollOffset)/proxyScrollView.frame.width
+        let offsetForCollectionView = offset * itemWidthWithPadding
+        brushCollectionView.contentOffset += offsetForCollectionView
+        self.lastScrollOffset = proxyScrollView.contentOffset
+    }
+
+    func resetCollectionViewOffsetIfNecessary() {
+        let offset = brushCollectionView.contentOffset
+        let width = brushCollectionView.contentSize.width / 2
+        let pos = offset.x.truncatingRemainder(dividingBy: width)
+        if offset.x > width {
+            brushCollectionView.contentOffset = CGPoint(x: pos + kInterItemSpacing/2, y: offset.y)
+        } else if (offset.x < 0) {
+            brushCollectionView.contentOffset = CGPoint(x: width + pos - kInterItemSpacing/2, y: offset.y)
+        }
+    }
+
+    func updateBrushLabelText() {
+        let safeIndex = indexPathInTheMiddle.item % images.count
+        brushLabel.text = images[safeIndex].imageName
     }
 
     // MARK: ControlView handling
