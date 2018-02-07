@@ -45,7 +45,12 @@ AboutViewControllerDelegate {
     private var lastScrollOffset: CGPoint?
     private var currentString: String?
     private var displayLink: CADisplayLink?
-    private var selectedIndexPath = IndexPath(item: 0, section: 0)
+    private var selectedIndexPath = IndexPath(item: 0, section: 0) {
+        didSet {
+            let safeIndex = selectedIndexPath.item % images.count
+            app?.setMode(Int32(safeIndex))
+        }
+    }
 
     private var itemSize: CGSize {
         let edge = brushCollectionView.frame.height - kPaddingTopBottom
@@ -71,20 +76,18 @@ AboutViewControllerDelegate {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        brushCollectionView.reloadData() // recalculate paddings when frames change
+    }
+
     private func resetProxyScrollView() {
         backgroundView.addGestureRecognizer(proxyScrollView.panGestureRecognizer)
         proxyScrollView.contentSize = CGSize(width: view.frame.width * kLargeScrollViewMultiplier,
                                              height: view.frame.height)
         proxyScrollView.contentOffset = CGPoint(x: proxyScrollView.contentSize.width/2, y: 0)
         lastScrollOffset = proxyScrollView.contentOffset
-
-        // select an index if one has not been selected yet. This always assumes we start with the
-        // first index. We select index 0 + n as opposed to 0 so that items will be visible on
-        // both left and right sies.
-        selectedIndexPath = brushCollectionView.indexPathsForSelectedItems?.first ?? IndexPath(item: images.count, section: 0)
-        brushCollectionView.selectItem(at: selectedIndexPath,
-                                       animated: false,
-                                       scrollPosition: .centeredHorizontally)
+        scrollToItem(at: selectedIndexPath, animated: false)
     }
 
     private func setUpTextView() {
@@ -266,14 +269,22 @@ AboutViewControllerDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
-        let safeIndex = indexPath.item % images.count
-        app?.setMode(Int32(safeIndex))
+        scrollToItem(at: selectedIndexPath, animated: true)
+        brushCollectionView.reloadData()
 
         // delay a closing a little bit so it's not so jarring
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.hideDrawer()
         }
+    }
 
+    // we can't use UICollectionView.scrollToItem because it doesn't allow us to scroll to
+    // negative content offsets
+    private func scrollToItem(at indexPath: IndexPath, animated: Bool) {
+        if let x = brushCollectionView.layoutAttributesForItem(at: indexPath)?.center.x {
+            let offset = x - brushCollectionView.frame.width/2
+            brushCollectionView.setContentOffset(CGPoint(x:offset , y: 0), animated: animated)
+        }
     }
 
     // MARK: UIScrollView
