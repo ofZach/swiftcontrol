@@ -128,9 +128,6 @@ AboutViewControllerDelegate {
 
     @objc func showDrawer() {
         resetProxyScrollView()
-        // make sure other controls on the background view are hidden
-        textView.alpha = 0
-        textViewCancel.alpha = 0
         UIView.animate(withDuration: 0.3)  {
             self.backgroundView.alpha = 1.0
             self.brushCollectionView.alpha = 1.0
