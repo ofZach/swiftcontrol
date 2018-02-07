@@ -45,10 +45,15 @@ AboutViewControllerDelegate {
     private var lastScrollOffset: CGPoint?
     private var currentString: String?
     private var displayLink: CADisplayLink?
+    private var selectedIndexPath = IndexPath(item: 0, section: 0)
 
     private var itemSize: CGSize {
         let edge = brushCollectionView.frame.height - kPaddingTopBottom
         return CGSize(width: edge, height: edge)
+    }
+
+    private var itemWidthWithPadding: CGFloat {
+        return itemSize.width + kInterItemSpacing
     }
 
     private var isDrawerOpen: Bool {
@@ -76,8 +81,8 @@ AboutViewControllerDelegate {
         // select an index if one has not been selected yet. This always assumes we start with the
         // first index. We select index 0 + n as opposed to 0 so that items will be visible on
         // both left and right sies.
-        let selectedIndex = brushCollectionView.indexPathsForSelectedItems?.first ?? IndexPath(item: images.count, section: 0)
-        brushCollectionView.selectItem(at: selectedIndex,
+        selectedIndexPath = brushCollectionView.indexPathsForSelectedItems?.first ?? IndexPath(item: images.count, section: 0)
+        brushCollectionView.selectItem(at: selectedIndexPath,
                                        animated: false,
                                        scrollPosition: .centeredHorizontally)
     }
@@ -248,10 +253,10 @@ AboutViewControllerDelegate {
                                                             for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         let index = indexPath.item % images.count
         cell.imageView.image = UIImage(named: images[index])
-        if let selected = collectionView.indexPathsForSelectedItems?.first {
-            if selected.item % images.count == index {
-                cell.isSelected = true
-            }
+        if selectedIndexPath.item % images.count == index || selectedIndexPath.item == index {
+            cell.isSelected = true
+        } else {
+            cell.isSelected = false
         }
         return cell
     }
@@ -260,6 +265,7 @@ AboutViewControllerDelegate {
 
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
         let safeIndex = indexPath.item % images.count
         app?.setMode(Int32(safeIndex))
 
@@ -278,6 +284,16 @@ AboutViewControllerDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         stopDisplayLink()
+
+        // select the item in the middle of the screen
+        selectItemInTheMiddleOfScreen()
+    }
+
+    private func selectItemInTheMiddleOfScreen() {
+        let centerOffset = brushCollectionView.contentOffset.x + brushCollectionView.frame.width/2
+        let index = Int(centerOffset/itemWidthWithPadding)
+        selectedIndexPath = IndexPath(item: index, section: 0)
+        brushCollectionView.reloadData() // to clear adjacent selected states
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -291,8 +307,7 @@ AboutViewControllerDelegate {
             // paging logic
             let lastScrollOffset = self.lastScrollOffset ?? scrollView.contentOffset
             let offset = (scrollView.contentOffset - lastScrollOffset)/scrollView.frame.width
-            let itemSizeWithPadding = itemSize.width + kInterItemSpacing
-            let offsetForCollectionView = offset * itemSizeWithPadding
+            let offsetForCollectionView = offset * itemWidthWithPadding
             brushCollectionView.contentOffset += offsetForCollectionView
             self.lastScrollOffset = scrollView.contentOffset
         } else if scrollView == brushCollectionView {
