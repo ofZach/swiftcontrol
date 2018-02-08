@@ -94,7 +94,7 @@ AboutViewControllerDelegate {
                                              height: view.frame.height)
         proxyScrollView.contentOffset = CGPoint(x: proxyScrollView.contentSize.width/2, y: 0)
         lastScrollOffset = proxyScrollView.contentOffset
-        scrollToItem(at: selectedIndexPath, animated: false)
+        selectItem(at: selectedIndexPath, animated: true)
     }
 
     private func setUpTextView() {
@@ -113,6 +113,16 @@ AboutViewControllerDelegate {
         } else {
             showDrawer()
         }
+    }
+
+    @IBAction func didTapNext() {
+        selectItem(at: IndexPath(item: indexPathInTheMiddle.item + 1, section: 0),
+                     animated: true)
+    }
+
+    @IBAction func didTapPrevious() {
+        selectItem(at: IndexPath(item: indexPathInTheMiddle.item - 1, section: 0),
+                     animated: true)
     }
 
     private func hideDrawer(animated: Bool = true) {
@@ -272,9 +282,8 @@ AboutViewControllerDelegate {
 
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
-        scrollToItem(at: selectedIndexPath, animated: true)
-        brushCollectionView.reloadData()
+
+        selectItem(at: selectedIndexPath, animated: true)
 
         // delay a closing a little bit so it's not so jarring
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -284,11 +293,14 @@ AboutViewControllerDelegate {
 
     // we can't use UICollectionView.scrollToItem because it doesn't allow us to scroll to
     // negative content offsets
-    private func scrollToItem(at indexPath: IndexPath, animated: Bool) {
+    private func selectItem(at indexPath: IndexPath, animated: Bool) {
         if let x = brushCollectionView.layoutAttributesForItem(at: indexPath)?.center.x {
             let offset = x - brushCollectionView.frame.width/2
             brushCollectionView.setContentOffset(CGPoint(x:offset , y: 0), animated: animated)
         }
+        selectedIndexPath = indexPath
+        brushCollectionView.reloadData()
+//        brushCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
     }
 
     // MARK: UIScrollView
@@ -304,16 +316,11 @@ AboutViewControllerDelegate {
         stopDisplayLink()
 
         // select the item in the middle of the screen
-        selectItemInTheMiddleOfScreen()
+        selectItem(at: indexPathInTheMiddle, animated: false)
 
         UIView.animate(withDuration: 0.2) {
             self.brushLabel.alpha = 1.0
         }
-    }
-
-    private func selectItemInTheMiddleOfScreen() {
-        selectedIndexPath = indexPathInTheMiddle
-        brushCollectionView.reloadData() // to clear adjacent selected states
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
