@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+private let kPaddingTopBottom: CGFloat = 50
+private let kInterItemSpacing: CGFloat = 50
+private let kLargeScrollViewMultiplier: CGFloat = 100 // no meaning, just meant to make scroll view large
+
 class ControlsViewController : UIViewController,
 UICollectionViewDelegate,
 UICollectionViewDataSource,
@@ -15,33 +19,54 @@ UICollectionViewDelegateFlowLayout,
 UITextViewDelegate,
 AboutViewControllerDelegate {
 
-    private let kPaddingTopBottom: CGFloat = 50
-    private let kInterItemSpacing: CGFloat = 50
-
     private let kCellReuseIdentifier = String(describing: ImageCollectionViewCell.self);
 
     @IBOutlet var collectionViewYConstraint: NSLayoutConstraint!
     @IBOutlet var brushCollectionView: UICollectionView!
+    @IBOutlet var proxyScrollView: UIScrollView!
     @IBOutlet var backgroundView: UIVisualEffectView!
     @IBOutlet var textView: UITextView!
     @IBOutlet var textViewCancel: UIButton!
     @IBOutlet var textBackgroundView: UIView!
+    @IBOutlet var brushLabel: UILabel!
 
     private var aboutViewController: AboutViewController?
 
-    let images = ["charlock",
-                  "cleaver",
-                  "maize",
-                  "shepards purse",
-                  "fat hen",
-                  "sugar beet",
-                  "maize",
-                  "shepards purse"]
+    let images = [Brush(name: "Charlock", imageName: "charlock"),
+                  Brush(name: "Cleaver", imageName: "cleaver"),
+                  Brush(name: "Maize", imageName: "maize"),
+                  Brush(name: "Shepards purse", imageName: "shepards purse"),
+                  Brush(name: "Fat Hen", imageName: "fat hen"),
+                  Brush(name: "Sugar Beet", imageName: "sugar beet"),
+                  Brush(name: "Maize", imageName: "maize")]
 
     @objc var app: ofAppAdapter?
 
+    private var lastScrollOffset: CGPoint?
     private var currentString: String?
     private var displayLink: CADisplayLink?
+
+    private var selectedIndexPath = IndexPath(item: 0, section: 0) {
+        didSet {
+            let safeIndex = selectedIndexPath.item % images.count
+            app?.setMode(Int32(safeIndex))
+        }
+    }
+
+    private var indexPathInTheMiddle: IndexPath {
+        let centerOffset = brushCollectionView.contentOffset.x + brushCollectionView.frame.width/2
+        let index = Int(centerOffset/itemWidthWithPadding)
+        return IndexPath(item: index, section: 0)
+    }
+
+    private var itemSize: CGSize {
+        let edge = brushCollectionView.frame.height - kPaddingTopBottom
+        return CGSize(width: edge, height: edge)
+    }
+
+    private var itemWidthWithPadding: CGFloat {
+        return itemSize.width + kInterItemSpacing
+    }
 
     private var isDrawerOpen: Bool {
         return brushCollectionView.alpha > 0
@@ -56,6 +81,20 @@ AboutViewControllerDelegate {
         if let controlView = view as? ControlView {
             controlView.controller = self
         }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        brushCollectionView.reloadData() // recalculate paddings when frames change
+    }
+
+    private func resetProxyScrollView() {
+        backgroundView.addGestureRecognizer(proxyScrollView.panGestureRecognizer)
+        proxyScrollView.contentSize = CGSize(width: view.frame.width * kLargeScrollViewMultiplier,
+                                             height: view.frame.height)
+        proxyScrollView.contentOffset = CGPoint(x: proxyScrollView.contentSize.width/2, y: 0)
+        lastScrollOffset = proxyScrollView.contentOffset
+        selectItem(at: selectedIndexPath, animated: true)
     }
 
     private func setUpTextView() {
@@ -76,6 +115,16 @@ AboutViewControllerDelegate {
         }
     }
 
+    @IBAction func didTapNext() {
+        selectItem(at: IndexPath(item: indexPathInTheMiddle.item + 1, section: 0),
+                     animated: true)
+    }
+
+    @IBAction func didTapPrevious() {
+        selectItem(at: IndexPath(item: indexPathInTheMiddle.item - 1, section: 0),
+                     animated: true)
+    }
+
     private func hideDrawer(animated: Bool = true) {
         UIView.animate(withDuration: animated ? 0.3 : 0,
                        animations: {
@@ -88,9 +137,7 @@ AboutViewControllerDelegate {
     }
 
     @objc func showDrawer() {
-        // make sure other controls on the background view are hidden
-        textView.alpha = 0
-        textViewCancel.alpha = 0
+        resetProxyScrollView()
         UIView.animate(withDuration: 0.3)  {
             self.backgroundView.alpha = 1.0
             self.brushCollectionView.alpha = 1.0
@@ -192,10 +239,7 @@ AboutViewControllerDelegate {
     // MARK: UICollectionViewDelegateFlowLayout
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = collectionView.frame.size
-        size.height -= kPaddingTopBottom
-        size.width = size.height
-        return size
+        return itemSize
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -225,11 +269,11 @@ AboutViewControllerDelegate {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:kCellReuseIdentifier,
                                                             for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         let index = indexPath.item % images.count
-        cell.imageView.image = UIImage(named: images[index])
-        if let selected = collectionView.indexPathsForSelectedItems?.first {
-            if selected.item % images.count == index {
-                cell.isSelected = true
-            }
+        cell.imageView.image = UIImage(named: images[index].imageName)
+        if selectedIndexPath.item % images.count == index || selectedIndexPath.item == index {
+            cell.isSelected = true
+        } else {
+            cell.isSelected = false
         }
         return cell
     }
@@ -238,24 +282,45 @@ AboutViewControllerDelegate {
 
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item % images.count
-        app?.setMode(Int32(index))
+
+        selectItem(at: selectedIndexPath, animated: true)
 
         // delay a closing a little bit so it's not so jarring
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.hideDrawer()
         }
+    }
 
+    // we can't use UICollectionView.scrollToItem because it doesn't allow us to scroll to
+    // negative content offsets
+    private func selectItem(at indexPath: IndexPath, animated: Bool) {
+        if let x = brushCollectionView.layoutAttributesForItem(at: indexPath)?.center.x {
+            let offset = x - brushCollectionView.frame.width/2
+            brushCollectionView.setContentOffset(CGPoint(x:offset , y: 0), animated: animated)
+        }
+        selectedIndexPath = indexPath
+        brushCollectionView.reloadData()
+//        brushCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
     }
 
     // MARK: UIScrollView
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         startDisplayLink()
+        UIView.animate(withDuration: 0.2) {
+            self.brushLabel.alpha = 0.0
+        }
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         stopDisplayLink()
+
+        // select the item in the middle of the screen
+        selectItem(at: indexPathInTheMiddle, animated: false)
+
+        UIView.animate(withDuration: 0.2) {
+            self.brushLabel.alpha = 1.0
+        }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -265,26 +330,48 @@ AboutViewControllerDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset
-        let width = scrollView.contentSize.width / 2
+        if scrollView == proxyScrollView {
+            // paging logic
+            updateScrollViewOffset()
+        } else if scrollView == brushCollectionView {
+            // wrapping logic
+            resetCollectionViewOffsetIfNecessary()
+            updateBrushLabelText()
+        }
+    }
+
+    func updateScrollViewOffset() {
+        let lastScrollOffset = self.lastScrollOffset ?? proxyScrollView.contentOffset
+        let offset = (proxyScrollView.contentOffset - lastScrollOffset)/proxyScrollView.frame.width
+        let offsetForCollectionView = offset * itemWidthWithPadding
+        brushCollectionView.contentOffset += offsetForCollectionView
+        self.lastScrollOffset = proxyScrollView.contentOffset
+    }
+
+    func resetCollectionViewOffsetIfNecessary() {
+        let offset = brushCollectionView.contentOffset
+        let width = brushCollectionView.contentSize.width / 2
         let pos = offset.x.truncatingRemainder(dividingBy: width)
         if offset.x > width {
-            scrollView.contentOffset = CGPoint(x: pos + kInterItemSpacing/2, y: offset.y)
+            brushCollectionView.contentOffset = CGPoint(x: pos + kInterItemSpacing/2, y: offset.y)
         } else if (offset.x < 0) {
-            scrollView.contentOffset = CGPoint(x: width + pos - kInterItemSpacing/2, y: offset.y)
+            brushCollectionView.contentOffset = CGPoint(x: width + pos - kInterItemSpacing/2, y: offset.y)
         }
+    }
+
+    func updateBrushLabelText() {
+        let safeIndex = indexPathInTheMiddle.item % images.count
+        brushLabel.text = images[safeIndex].imageName
     }
 
     // MARK: ControlView handling
     func shouldHandleTouch() -> Bool {
-        return textView.isFirstResponder || isDrawerOpen
+        return textView.isFirstResponder
     }
 
     func handleTouch() {
         if textView.isFirstResponder {
             hideTextView()
-        } else if isDrawerOpen {
-            hideDrawer()
         }
     }
 }
