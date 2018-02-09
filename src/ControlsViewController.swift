@@ -283,7 +283,7 @@ AboutViewControllerDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
 
-        selectItem(at: selectedIndexPath, animated: true)
+        selectItem(at: indexPath, animated: true)
 
         // delay a closing a little bit so it's not so jarring
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -300,7 +300,6 @@ AboutViewControllerDelegate {
         }
         selectedIndexPath = indexPath
         brushCollectionView.reloadData()
-//        brushCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
     }
 
     // MARK: UIScrollView
