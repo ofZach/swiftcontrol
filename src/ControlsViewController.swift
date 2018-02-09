@@ -390,12 +390,13 @@ class ControlView: UIView {
         guard let view = super.hitTest(point, with: event) else { return nil }
         guard let controller = controller else { return nil }
 
-        if self == view && controller.shouldHandleTouch()  {
-            return view
+        if self == view {
+            if controller.shouldHandleTouch() {
+                return view
+            }
         } else if view.isDescendant(of: self) {
             return view
-        } else {
-            return nil
         }
+        return nil
     }
 }
