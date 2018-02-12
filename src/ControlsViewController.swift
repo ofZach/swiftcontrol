@@ -93,7 +93,7 @@ AboutViewControllerDelegate {
                                              height: view.frame.height)
         proxyScrollView.contentOffset = CGPoint(x: proxyScrollView.contentSize.width/2, y: 0)
         lastScrollOffset = proxyScrollView.contentOffset
-        selectItem(at: selectedIndexPath, animated: true)
+        selectItem(at: selectedIndexPath, animated: false)
     }
 
     private func setUpTextView() {
@@ -345,6 +345,8 @@ AboutViewControllerDelegate {
     func resetCollectionViewOffsetIfNecessary() {
         let offset = brushCollectionView.contentOffset
         let width = brushCollectionView.contentSize.width / 2
+
+        guard width > 0 else { return }
         let pos = offset.x.truncatingRemainder(dividingBy: width)
         if offset.x > width {
             brushCollectionView.contentOffset = CGPoint(x: pos + kInterItemSpacing/2, y: offset.y)
