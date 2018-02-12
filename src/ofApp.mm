@@ -154,7 +154,7 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
         for (id controller in parentVC.childViewControllers) {
             if ([controller isKindOfClass:[ControlsViewController class]]) {
                 ControlsViewController *controlsVC = controller;
-                [controlsVC showDrawer];
+                [controlsVC showBrushSelection];
             }
         }
     } else {
