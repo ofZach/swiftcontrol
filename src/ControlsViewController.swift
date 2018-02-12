@@ -97,7 +97,7 @@ AboutViewControllerDelegate {
     }
 
     private func setUpTextView() {
-        hideTextView()
+        hideTextView(animated: false)
     }
 
     private func setUpCollectionView() {
@@ -171,9 +171,9 @@ AboutViewControllerDelegate {
         })
     }
 
-    private func hideTextView() {
+    private func hideTextView(animated: Bool = true) {
         textView.resignFirstResponder()
-        UIView.animate(withDuration: 0.3)  {
+        UIView.animate(withDuration: animated ? 0.3 : 0.0)  {
             self.textBackgroundView.alpha = 0.0
         }
 

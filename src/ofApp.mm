@@ -1,6 +1,8 @@
 #include "ofApp.h"
 #import "ofxARKit.h"
 #import "zach_controls-Swift.h"
+#import "PureLayout.h"
+#import "ofAppAdapter.h"
 #import <ARKit/ARKit.h>
 
 void logSIMD(const simd::float4x4 &matrix)
@@ -30,6 +32,17 @@ ofMatrix4x4 matFromSimd(const simd::float4x4 &matrix){
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+
+    ofxiOSAppDelegate *del = [UIApplication sharedApplication].delegate;
+    UIViewController *parentVC = del.glViewController;
+
+    ControlsViewController * controller = [[ControlsViewController alloc] initWithNibName:nil
+                                                                                   bundle:nil];
+    controller.app = [[ofAppAdapter alloc] initWithApp:this];
+    [parentVC addChildViewController:controller];
+    [parentVC.view addSubview:controller.view];
+    [controller.view autoPinEdgesToSuperviewEdges];
+
     ARCore::SFormat format;
     format.enablePlaneTracking().enableLighting();
     session = [ARCore::generateNewSession(format) retain];
