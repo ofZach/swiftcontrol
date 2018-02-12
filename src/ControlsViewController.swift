@@ -21,7 +21,6 @@ AboutViewControllerDelegate {
 
     private let kCellReuseIdentifier = String(describing: ImageCollectionViewCell.self);
 
-    @IBOutlet var collectionViewYConstraint: NSLayoutConstraint!
     @IBOutlet var brushCollectionView: UICollectionView!
     @IBOutlet var proxyScrollView: UIScrollView!
     @IBOutlet var backgroundView: UIVisualEffectView!
@@ -129,8 +128,6 @@ AboutViewControllerDelegate {
         UIView.animate(withDuration: animated ? 0.3 : 0,
                        animations: {
                         self.backgroundView.alpha = 0
-                        self.collectionViewYConstraint.constant = 50
-                        self.view.layoutIfNeeded()
         }, completion: { finished in
             self.brushCollectionView.alpha = 0
         })
@@ -141,8 +138,6 @@ AboutViewControllerDelegate {
         UIView.animate(withDuration: 0.3)  {
             self.backgroundView.alpha = 1.0
             self.brushCollectionView.alpha = 1.0
-            self.collectionViewYConstraint.constant = 0
-            self.view.layoutIfNeeded()
         }
     }
 

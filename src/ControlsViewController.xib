@@ -15,7 +15,6 @@
                 <outlet property="backgroundView" destination="p91-st-bU0" id="0uE-eZ-cLp"/>
                 <outlet property="brushCollectionView" destination="qLz-X0-OvE" id="sq1-jf-cBs"/>
                 <outlet property="brushLabel" destination="foD-at-jxb" id="0c6-fN-QEL"/>
-                <outlet property="collectionViewYConstraint" destination="EjA-k4-GgF" id="w0c-Ov-tdB"/>
                 <outlet property="proxyScrollView" destination="USd-3F-6x9" id="xUW-KI-gds"/>
                 <outlet property="textBackgroundView" destination="hQi-Mu-ApX" id="Zes-79-cfA"/>
                 <outlet property="textView" destination="UWT-j9-adk" id="5Sy-JJ-vHL"/>
