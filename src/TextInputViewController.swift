@@ -64,14 +64,12 @@ class TextInputViewController: UIViewController {
     }
 
     @IBAction func didRequestRandomWord() {
-        while true {
-            let safeIndex = Int(arc4random()) % quotes.count
-            if quotes[safeIndex] != currentString {
-                currentString = quotes[safeIndex]
-                updateTextViewText()
-                break
-            }
+        var safeIndex = -1
+        while safeIndex > = 0 && quotes[safeIndex] != currentString {
+            safeIndex = Int(arc4random()) % quotes.count
         }
+        currentString = quotes[safeIndex]
+        updateTextViewText()
     }
 
     private func hideTextView() {
