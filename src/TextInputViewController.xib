@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TextInputViewController" customModule="zach_controls" customModuleProvider="target">
             <connections>
+                <outlet property="characterCountLabel" destination="1nr-AI-txG" id="jtA-dH-UeD"/>
                 <outlet property="textView" destination="ZKI-I2-ZI4" id="12l-GB-Vz9"/>
                 <outlet property="textViewCancel" destination="Zlt-IF-OpI" id="3wT-ge-ddQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -43,11 +44,19 @@
                         <action selector="didTapCloseText" destination="-1" eventType="touchUpInside" id="zPL-3W-S5p"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nr-AI-txG">
+                    <rect key="frame" x="317" y="436" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.82095462328767121" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ZKI-I2-ZI4" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="4YU-cj-xbi"/>
+                <constraint firstItem="1nr-AI-txG" firstAttribute="top" secondItem="ZKI-I2-ZI4" secondAttribute="bottom" constant="28.5" id="9u2-UT-7kE"/>
                 <constraint firstItem="Zlt-IF-OpI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RBY-HM-LDb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1nr-AI-txG" secondAttribute="trailing" constant="16" id="UhJ-I4-qRd"/>
                 <constraint firstItem="ZKI-I2-ZI4" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" priority="999" id="b93-l6-0I9"/>
                 <constraint firstItem="ZKI-I2-ZI4" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="f8n-M7-WJf"/>
                 <constraint firstItem="Zlt-IF-OpI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="tcR-gh-fQ2"/>

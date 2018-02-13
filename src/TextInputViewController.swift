@@ -14,7 +14,13 @@ protocol TextInputViewControllerDelegate {
 class TextInputViewController: UIViewController {
 
     @IBOutlet var textView: UITextView!
+    @IBOutlet var characterCountLabel: UILabel!
     @IBOutlet var textViewCancel: UIButton!
+
+    private let maxCharacters = 30
+    private var availableCharacters: Int {
+        return maxCharacters - textView.text.count
+    }
 
     private var currentString: String?
     var app: ofAppAdapter?
@@ -22,6 +28,7 @@ class TextInputViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateTextViewText()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -31,9 +38,15 @@ class TextInputViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        textView.text = currentString
+        updateTextViewText()
         textView.becomeFirstResponder()
     }
+
+    private func updateTextViewText() {
+        textView.text = currentString
+        updateLabelCount()
+    }
+
 
     @IBAction func didTapCloseText() {
         hideTextView()
@@ -54,7 +67,32 @@ extension TextInputViewController : UITextViewDelegate {
             currentString = textView.text
             hideTextView()
             return false
+        } else if availableCharacters == 0 {
+            flashLabelReachedMaxCharacters()
+            return false
         }
         return true
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        updateLabelCount()
+    }
+
+    private func updateLabelCount() {
+        characterCountLabel.text = "\(availableCharacters)"
+    }
+
+    private func flashLabelReachedMaxCharacters() {
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) {
+            self.characterCountLabel.transform = self.characterCountLabel.transform
+                .concatenating(CGAffineTransform(scaleX: 1.3, y: 1.3))
+        }
+        animator.addCompletion { _ in
+            let secondAnimator = UIViewPropertyAnimator(duration: 0.1, curve: .easeOut) {
+                self.characterCountLabel.transform = .identity
+            }
+            secondAnimator.startAnimation()
+        }
+        animator.startAnimation()
     }
 }
