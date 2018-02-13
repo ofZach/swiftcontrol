@@ -28,6 +28,9 @@
 		2E869AC2201B8DA800727FB3 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E869AC1201B8DA800727FB3 /* ARKit.framework */; };
 		2EC82768203240EC00819602 /* BrushSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC82766203240EC00819602 /* BrushSelectionViewController.swift */; };
 		2EC82769203240EC00819602 /* BrushSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC82767203240EC00819602 /* BrushSelectionViewController.xib */; };
+		2EFFD51A20326D2200C9D650 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFFD51820326D2200C9D650 /* TextInputViewController.swift */; };
+		2EFFD51B20326D2200C9D650 /* TextInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EFFD51920326D2200C9D650 /* TextInputViewController.xib */; };
+		2EFFD51D2032711B00C9D650 /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFFD51C2032711B00C9D650 /* ControlsView.swift */; };
 		5326AEA810A23A0500278DE6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5326AEA710A23A0500278DE6 /* CoreLocation.framework */; };
 		53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */; };
 		678E130817951530005B6D19 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 678E130717951530005B6D19 /* Icon@2x.png */; };
@@ -99,6 +102,9 @@
 		2E869AC1201B8DA800727FB3 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		2EC82766203240EC00819602 /* BrushSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushSelectionViewController.swift; sourceTree = "<group>"; };
 		2EC82767203240EC00819602 /* BrushSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrushSelectionViewController.xib; sourceTree = "<group>"; };
+		2EFFD51820326D2200C9D650 /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
+		2EFFD51920326D2200C9D650 /* TextInputViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInputViewController.xib; sourceTree = "<group>"; };
+		2EFFD51C2032711B00C9D650 /* ControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
 		302A7A61ECBFE243BE2A6D15 /* ARProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ARProcessor.h; path = ../../../addons/ofxARKit/src/ARProcessor.h; sourceTree = SOURCE_ROOT; };
 		32CA4F630368D1EE00C91783 /* ofxiOS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxiOS_Prefix.pch; sourceTree = "<group>"; };
 		5326AEA710A23A0500278DE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -333,6 +339,9 @@
 				2E7E507D202BBF99008EDB6A /* Brush.swift */,
 				2EC82766203240EC00819602 /* BrushSelectionViewController.swift */,
 				2EC82767203240EC00819602 /* BrushSelectionViewController.xib */,
+				2EFFD51820326D2200C9D650 /* TextInputViewController.swift */,
+				2EFFD51920326D2200C9D650 /* TextInputViewController.xib */,
+				2EFFD51C2032711B00C9D650 /* ControlsView.swift */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -421,6 +430,7 @@
 				678E130C1795153C005B6D19 /* Default.png in Resources */,
 				678E130E17951540005B6D19 /* Default@2x.png in Resources */,
 				678E131017951549005B6D19 /* Default-568h@2x~iphone.png in Resources */,
+				2EFFD51B20326D2200C9D650 /* TextInputViewController.xib in Resources */,
 				2E682417201BBDB9004FBE62 /* AboutViewController.xib in Resources */,
 				2E682419201BBF9B004FBE62 /* AboutViews.xib in Resources */,
 				2E03ABF3201A4F3000CAABD4 /* Catalog.xcassets in Resources */,
@@ -454,6 +464,7 @@
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
 				2EC82768203240EC00819602 /* BrushSelectionViewController.swift in Sources */,
 				2E7E507E202BBF99008EDB6A /* Brush.swift in Sources */,
+				2EFFD51D2032711B00C9D650 /* ControlsView.swift in Sources */,
 				E4D8936F11527B74007E1F53 /* ofApp.mm in Sources */,
 				2E869ABE201B8D7700727FB3 /* ALView+PureLayout.m in Sources */,
 				2E7E507C202BA33D008EDB6A /* CGPoint+Utilities.swift in Sources */,
@@ -462,6 +473,7 @@
 				2E682416201BBDB9004FBE62 /* AboutViewController.swift in Sources */,
 				2E869ABF201B8D7700727FB3 /* NSArray+PureLayout.m in Sources */,
 				2E869ABD201B8D7700727FB3 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				2EFFD51A20326D2200C9D650 /* TextInputViewController.swift in Sources */,
 				966DC6CFF8359AF2BCC8EAFD /* ARAnchorManager.mm in Sources */,
 				26E48FA925CB7AB40D972560 /* ARProcessor.mm in Sources */,
 				8DEE3593CFC3E0A0F3578C2D /* ARCam.mm in Sources */,

@@ -9,16 +9,13 @@ import Foundation
 import UIKit
 
 class ControlsViewController : UIViewController,
-UITextViewDelegate,
 AboutViewControllerDelegate {
-    
-    @IBOutlet var textView: UITextView!
-    @IBOutlet var textViewCancel: UIButton!
-    @IBOutlet var textBackgroundView: UIView!
-    
 
     private var brushViewController: BrushSelectionViewController?
     private var aboutViewController: AboutViewController?
+    private var textInputViewController: TextInputViewController =
+        TextInputViewController(nibName: String(describing: TextInputViewController.self),
+                                bundle: nil)
 
     let images = [Brush(name: "Charlock", imageName: "charlock"),
                   Brush(name: "Cleaver", imageName: "cleaver"),
@@ -29,27 +26,22 @@ AboutViewControllerDelegate {
                   Brush(name: "Maize", imageName: "maize")]
 
     @objc var app: ofAppAdapter?
-    private var currentString: String?
 
     private var isDrawerOpen: Bool {
         guard let alpha = brushViewController?.view.alpha else { return false }
         return alpha > 0
     }
 
+    override var shouldAutomaticallyForwardAppearanceMethods: Bool {
+        return false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTextView()
+        setUpTextInput()
         setUpBrushSelection()
-        hideBrushSelection(animated: false)
-
-        if let controlView = view as? ControlView {
-            controlView.controller = self
-        }
     }
 
-    private func setUpTextView() {
-        hideTextView(animated: false)
-    }
 
     private func setUpBrushSelection() {
         guard let app = app else { return }
@@ -59,6 +51,17 @@ AboutViewControllerDelegate {
         view.addSubview(controller.view)
         controller.view.autoPinEdgesToSuperviewEdges()
         brushViewController = controller
+        hideBrushSelection(animated: false)
+    }
+
+    private func setUpTextInput() {
+        guard let app = app else { return }
+        textInputViewController.delegate = self
+        textInputViewController.app = app
+        addChildViewController(textInputViewController)
+        view.addSubview(textInputViewController.view)
+        textInputViewController.view.autoPinEdgesToSuperviewEdges()
+        hideTextInput(animated: false)
     }
 
     @IBAction func didTapOpenDrawer() {
@@ -70,28 +73,36 @@ AboutViewControllerDelegate {
     }
 
     private func hideBrushSelection(animated: Bool = true) {
+        guard let brushViewController = brushViewController else { return }
+        brushViewController.beginAppearanceTransition(false, animated: true)
         UIView.animate(withDuration: animated ? 0.3 : 0,
                        animations: {
-                        self.brushViewController?.view.alpha = 0.0
+                        brushViewController.view.alpha = 0.0
         }, completion: { finished in
+            brushViewController.endAppearanceTransition()
         })
     }
 
     @objc func showBrushSelection() {
-        brushViewController?.viewWillAppear(true)
-        UIView.animate(withDuration: 0.3)  {
-            self.brushViewController?.view.alpha = 1.0
-        }
+        guard let brushViewController = brushViewController else { return }
+        brushViewController.beginAppearanceTransition(true, animated: true)
+        UIView.animate(withDuration: 0.3, animations:  {
+            brushViewController.view.alpha = 1.0
+        }, completion: { finished in
+            brushViewController.endAppearanceTransition()
+        })
     }
 
     private func hideAbout() {
         guard let aboutViewController = aboutViewController else { return }
+        aboutViewController.beginAppearanceTransition(false, animated: true)
         UIView.animate(withDuration: 0.3,
                        delay: 0.0,
                        animations: {
                         aboutViewController.view.alpha = 0.0
 
         }) { finished in
+            aboutViewController.endAppearanceTransition()
             aboutViewController.removeFromParentViewController()
             self.aboutViewController = nil
         }
@@ -107,69 +118,46 @@ AboutViewControllerDelegate {
         aboutViewController.view.alpha = 0.0
         view.addSubview(aboutViewController.view)
         aboutViewController.view.autoPinEdgesToSuperviewEdges()
-
+        aboutViewController.beginAppearanceTransition(false, animated: true)
         UIView.animate(withDuration: 0.3,
                        animations: {
                         aboutViewController.view.alpha = 1.0
+        }, completion: { finished in
+            aboutViewController.endAppearanceTransition()
         })
     }
 
-    private func hideTextView(animated: Bool = true) {
-        textView.resignFirstResponder()
-        UIView.animate(withDuration: animated ? 0.3 : 0.0)  {
-            self.textBackgroundView.alpha = 0.0
-        }
+    private func hideTextInput(animated: Bool = true) {
+        textInputViewController.beginAppearanceTransition(false, animated: animated)
+        UIView.animate(withDuration: animated ? 0.3 : 0.0, animations: {
+            self.textInputViewController.view.alpha = 0.0
+        }, completion: { finished in
+            self.textInputViewController.endAppearanceTransition()
+        })
 
     }
-    private func showTextView() {
-        UIView.animate(withDuration: 0.3)  {
-            self.textBackgroundView.alpha = 1.0
-        }
+    private func showTextInput() {
+        textInputViewController.beginAppearanceTransition(true, animated: true)
+        UIView.animate(withDuration: 0.3, animations:  {
+            self.textInputViewController.view.alpha = 1
+        }, completion: { finished in
+            self.textInputViewController.endAppearanceTransition()
+        })
     }
     
     @IBAction func didTapTestText() {
-        textView.text = currentString
         hideBrushSelection()
-        showTextView()
-        textView.becomeFirstResponder()
+        showTextInput()
     }
 
-    @IBAction func didTapCloseText() {
-        hideTextView()
-    }
 
     // MARK: AboutViewControllerDelegate
 
     func aboutViewControllerDidTapClose(_ controller: AboutViewController) {
         hideAbout()
     }
-
-    // MARK: UITextViewDelegate
-
-    func textView(_ textView: UITextView,
-                  shouldChangeTextIn range: NSRange,
-                  replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            app?.setText(textView.text)
-            currentString = textView.text
-            hideTextView()
-            return false
-        }
-        return true
-    }
-
-    // MARK: ControlView handling
-    func shouldHandleTouch() -> Bool {
-        return textView.isFirstResponder
-    }
-
-    func handleTouch() {
-        if textView.isFirstResponder {
-            hideTextView()
-        }
-    }
 }
+
 extension ControlsViewController : BrushSelectionViewControllerDelegate {
     func brushSelectionViewControllerDidSelectBrush(_ controller: BrushSelectionViewController,
                                                     at index: Int) {
@@ -182,27 +170,8 @@ extension ControlsViewController : BrushSelectionViewControllerDelegate {
     }
 }
 
-class ControlView: UIView {
-    weak var controller: ControlsViewController?
-
-    var touch: UITouch?
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let controller = controller else { return }
-        controller.handleTouch()
-    }
-
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard let view = super.hitTest(point, with: event) else { return nil }
-        guard let controller = controller else { return nil }
-
-        if self == view {
-            if controller.shouldHandleTouch() {
-                return view
-            }
-        } else if view.isDescendant(of: self) {
-            return view
-        }
-        return nil
+extension ControlsViewController : TextInputViewControllerDelegate {
+    func textInputViewControllerDidTapClose(_ controller: TextInputViewController) {
+        hideTextInput()
     }
 }
