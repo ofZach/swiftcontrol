@@ -11,6 +11,12 @@ protocol TextInputViewControllerDelegate {
     func textInputViewControllerDidTapClose(_ controller: TextInputViewController)
 }
 
+let quotes = [
+    "Go ahead and make my day",
+    "Hello Lovely",
+    "Stay Weird"
+]
+
 class TextInputViewController: UIViewController {
 
     @IBOutlet var textView: UITextView!
@@ -22,7 +28,12 @@ class TextInputViewController: UIViewController {
         return maxCharacters - textView.text.count
     }
 
-    private var currentString: String?
+    private var currentString: String? {
+        didSet {
+            let currentString = self.currentString ?? ""
+            app?.setText(currentString)
+        }
+    }
     var app: ofAppAdapter?
     var delegate: TextInputViewControllerDelegate?
 
@@ -52,6 +63,17 @@ class TextInputViewController: UIViewController {
         hideTextView()
     }
 
+    @IBAction func didRequestRandomWord() {
+        while true {
+            let safeIndex = Int(arc4random()) % quotes.count
+            if quotes[safeIndex] != currentString {
+                currentString = quotes[safeIndex]
+                updateTextViewText()
+                break
+            }
+        }
+    }
+
     private func hideTextView() {
         delegate?.textInputViewControllerDidTapClose(self)
     }
@@ -63,7 +85,6 @@ extension TextInputViewController : UITextViewDelegate {
                   replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
-            app?.setText(textView.text)
             currentString = textView.text
             hideTextView()
             return false

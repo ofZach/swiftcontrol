@@ -50,12 +50,21 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOz-o2-T28">
+                    <rect key="frame" x="16" y="432" width="97" height="30"/>
+                    <state key="normal" title="Random Word"/>
+                    <connections>
+                        <action selector="didRequestRandomWord" destination="-1" eventType="touchUpInside" id="9JA-w0-UWm"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.82095462328767121" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ZKI-I2-ZI4" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="4YU-cj-xbi"/>
+                <constraint firstItem="WOz-o2-T28" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="8cJ-98-q5l"/>
                 <constraint firstItem="1nr-AI-txG" firstAttribute="top" secondItem="ZKI-I2-ZI4" secondAttribute="bottom" constant="28.5" id="9u2-UT-7kE"/>
                 <constraint firstItem="Zlt-IF-OpI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RBY-HM-LDb"/>
+                <constraint firstItem="WOz-o2-T28" firstAttribute="baseline" secondItem="1nr-AI-txG" secondAttribute="baseline" id="Smh-ir-Fdg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1nr-AI-txG" secondAttribute="trailing" constant="16" id="UhJ-I4-qRd"/>
                 <constraint firstItem="ZKI-I2-ZI4" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" priority="999" id="b93-l6-0I9"/>
                 <constraint firstItem="ZKI-I2-ZI4" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="f8n-M7-WJf"/>
